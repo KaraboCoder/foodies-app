@@ -5,8 +5,9 @@
  1. Clone the repo https://github.com/KaraboCoder/foodies-app.git
  2. Import the project on IntelliJ IDEA / CD into the project folder
  3. Install maven dependencies
- 3.1. Make sure you install maven cli from https://maven.apache.org/guides/getting-started/windows-prerequisites.html
- 3.1. $ mvn install
+ <br>
+ *  Make sure you install maven cli from https://maven.apache.org/guides/getting-started/windows-prerequisites.html
+ * $ mvn install
  
  4. Install MySQL from https://dev.mysql.com/downloads/mysql/
  5. Create a root user on MySQL with username:root and password:root
