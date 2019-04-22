@@ -1,0 +1,9 @@
+/* Please include all global styles here. */
+/*  To add styles for a specific template,
+    please create a file named <template-name>.css
+*/
+*{
+    padding: 0,
+    margin: 0,
+    font-family: 'Lucida-Grande'
+}

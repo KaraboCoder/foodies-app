@@ -1,13 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Foodies | ${title}</title>
+    <title th:text="'Foodies | ' + ${title}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
 <h1>Welcome to foodies</h1>
 
-<a href="">Current route is: ${title}</a>
+<a href="" th:text="${title}">Current route is.</a>
 </body>
 </html>

@@ -1,0 +1,1 @@
+insert into userprofiles values (1, 'endee', 'endee@outlook.com');
