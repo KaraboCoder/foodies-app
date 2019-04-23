@@ -14,8 +14,8 @@ This assumes that you already have  MySQL server installed and running on localh
 * Run the main application and ensure that the index page appears on **localhost:8080**
 
 ## Creating a pull request
-* When working on a ticket, please create a new branch from dev as follows: * git checkout -b <new-branch-name>
-* When you push your work for the **first time**, run * git push --set-upstream* origin <new-branch-name> 
+* When working on a ticket, please create a new branch from dev as follows: *git checkout -b <new_branch_name>*
+* When you push your work for the **first time**, run * git push --set-upstream origin <new_branch_name>* 
 * After completing the work on your ticket, please **create a pull request to dev** as follows:
   *  Go to github.com/<our_repo>
   *  Select the branch you've been working on and generate a new pull request
