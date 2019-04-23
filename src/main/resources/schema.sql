@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS userprofiles(
 );
 
 /* Create recipe schema */
-CREATE TABLE IF NOT EXISTS recipes(
+CREATE TABLE IF NOT EXISTS recipe(
     id BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     OwnerId BIGINT(20) NOT NULL DEFAULT 0,
@@ -22,8 +22,7 @@ CREATE TABLE IF NOT EXISTS recipes(
 /* Grocery Item schema */
 CREATE TABLE IF NOT EXISTS shopping_list_item(
     ID BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    EstimatedPrice INT
+    Name VARCHAR(100) NOT NULL
 );
 
 /* Create ingredient schema */
@@ -37,7 +36,7 @@ CREATE TABLE IF NOT EXISTS recipe_ingredient(
 );
 
 /* Create categories schema */
-CREATE TABLE IF NOT EXISTS categories(
+CREATE TABLE IF NOT EXISTS  categories(
     ID BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     NAME VARCHAR(100) NOT NULL,
     Description TEXT
