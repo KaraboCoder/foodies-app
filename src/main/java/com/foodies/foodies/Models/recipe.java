@@ -24,6 +24,7 @@ public class Recipe {
     private String time_to_prepare;
     private String  difficulty_level;
 
+   //# region getters & setters
     public long getId() {
         return id;
     }
@@ -86,5 +87,13 @@ public class Recipe {
 
     public void setDifficulty_level(String difficulty_level) {
         this.difficulty_level = difficulty_level;
+    }
+
+    //# endregion
+
+
+    public String toString()
+    {
+        return id + " " + title + " "  + " " + instructions + " ";
     }
 }
