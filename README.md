@@ -1,5 +1,7 @@
 # foodies-app Dev
 
+<span style="color: red; font-weight: bolder;">Please note that this is not ready for use yet!</span>
+
 ## Getting started
 This assumes that you already have  MySQL server installed and running on localhost:3306
 <hr>
