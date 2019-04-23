@@ -5,7 +5,7 @@ insert into recipe values (1, 'Mexican Salami', 0, 'No description',
     '1. Start with water', 'no-picture', '2 mins', 'EASY')
 ON DUPLICATE KEY UPDATE ID=ID;
 
-insert into recipe values (2, 'Mexican Salami', 0, 'No description',
+insert into recipe values (2, 'Cheese lasagne', 0, 'No description',
     '1. Start with water', 'no-picture', '2 mins', 'MEDIUM')
 ON DUPLICATE KEY UPDATE ID=ID;
 

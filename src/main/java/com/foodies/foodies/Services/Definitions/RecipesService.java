@@ -3,14 +3,13 @@ package com.foodies.foodies.Services.Definitions;
 import com.foodies.foodies.DAO.RecipesRepository;
 import com.foodies.foodies.Models.Recipe;
 import com.foodies.foodies.Services.IRecipesService;
+import com.foodies.foodies.helpers.FoodiesGenericHelpers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
-import static com.foodies.foodies.helpers.GenericHelpers.isNullOrEmpty;
 
 @Service
 public class RecipesService implements IRecipesService {
@@ -58,7 +57,7 @@ public class RecipesService implements IRecipesService {
         try{
             var recipeToUpdate = this.FindRecipeByID(ID).orElseThrow();
 
-            if( isNullOrEmpty(updated.getTitle()) ) recipeToUpdate.setTitle(updated.getTitle());
+            if(FoodiesGenericHelpers.IsNullOrEmpty(updated.getTitle()) ) recipeToUpdate.setTitle(updated.getTitle());
 
             _repo.save(recipeToUpdate);
             return  true;
