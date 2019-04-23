@@ -15,25 +15,38 @@ CREATE TABLE IF NOT EXISTS recipes(
     instructions LONGTEXT NOT NULL,
     displayPictureUrl  TEXT,
     timeToPrepare VARCHAR(100),
-    difficultyLevel VARCHAR(50)
+    difficultyLevel VARCHAR(50),
+);
+
+
+/* Grocery Item schema */
+CREATE TABLE IF NOT EXISTS shopping_list_item(
+    ID BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    EstimatedPrice INT
 );
 
 /* Create ingredient schema */
-CREATE TABLE IF NOT EXISTS ingredients(
+CREATE TABLE IF NOT EXISTS recipe_ingredient(
     ID BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
+    groceryItem BIGINT(20) REFERENCES shoppingItem(id),
+    recipe BIGINT(20) REFERENCES recipes(id),
     UnitOfMeasurement VARCHAR(25) NOT NULL,
-    Quantity Number(10) NOT NULL,
-    EstimatedPrice number(10),
-    MoreInfo TEXT;
-    recipe BIGINT(20) REFERENCES recipes(id)
+    Quantity INT NOT NULL,
+    MoreInfo TEXT
 );
 
 /* Create categories schema */
-CREATE TABLE IF NOT EXISTS recipeCategories(
+CREATE TABLE IF NOT EXISTS categories(
     ID BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     NAME VARCHAR(100) NOT NULL,
-    Description TEXT,
+    Description TEXT
+);
+
+
+CREATE TABLE IF NOT EXISTS recipe_categories(
+    ID BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    categorry BIGINT(20) REFERENCES categories(id),
     recipe BIGINT(20) REFERENCES recipes(id)
 );
 
