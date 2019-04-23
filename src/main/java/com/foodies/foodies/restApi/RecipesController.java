@@ -22,7 +22,7 @@ public class RecipesController {
         this._recipeService = recipeService;
     }
 
-    @GetMapping("/recipes")
+    @GetMapping("/all")
     public ResponseEntity<List<Recipe>> RetriveAllRecipes(){
 
         List<Recipe> results = new ArrayList<>();

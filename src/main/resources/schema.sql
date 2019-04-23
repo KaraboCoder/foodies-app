@@ -10,12 +10,12 @@ CREATE TABLE IF NOT EXISTS userprofiles(
 CREATE TABLE IF NOT EXISTS recipe(
     id BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    OwnerId BIGINT(20) NOT NULL DEFAULT 0,
+    owner_id BIGINT(20) NOT NULL DEFAULT 0,
     description TEXT,
     instructions LONGTEXT NOT NULL,
-    displayPictureUrl  TEXT,
-    timeToPrepare VARCHAR(100),
-    difficultyLevel VARCHAR(50)
+    display_pic_url  TEXT,
+    time_to_prepare VARCHAR(100),
+    difficulty_level VARCHAR(50)
 );
 
 

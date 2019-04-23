@@ -14,15 +14,15 @@ public class Recipe {
     @NotNull
     @Column(unique = true)
     private String title;
-    @Column(name = "OwnerId")
+    @Column(name = "owner_id")
     private Long owner = 0L;
     private String description;
 
     @NotNull
     private String instructions;
-    private String displayPictureUrl;
-    private String timeToPrepare;
-    private RecipeDifficulties difficultyLevel;
+    private String display_pic_url;
+    private String time_to_prepare;
+    private String  difficulty_level;
 
     public long getId() {
         return id;
@@ -64,27 +64,27 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public String getDisplayPictureUrl() {
-        return displayPictureUrl;
+    public String getDisplay_pic_url() {
+        return display_pic_url;
     }
 
-    public void setDisplayPictureUrl(String displayPictureUrl) {
-        this.displayPictureUrl = displayPictureUrl;
+    public void setDisplay_pic_url(String display_pic_url) {
+        this.display_pic_url = display_pic_url;
     }
 
-    public String getTimeToPrepare() {
-        return timeToPrepare;
+    public String getTime_to_prepare() {
+        return time_to_prepare;
     }
 
-    public void setTimeToPrepare(String timeToPrepare) {
-        this.timeToPrepare = timeToPrepare;
+    public void setTime_to_prepare(String time_to_prepare) {
+        this.time_to_prepare = time_to_prepare;
     }
 
-    public RecipeDifficulties getDifficultyLevel() {
-        return difficultyLevel;
+    public String getDifficulty_level() {
+        return difficulty_level;
     }
 
-    public void setDifficultyLevel(RecipeDifficulties difficultyLevel) {
-        this.difficultyLevel = difficultyLevel;
+    public void setDifficulty_level(String difficulty_level) {
+        this.difficulty_level = difficulty_level;
     }
 }
