@@ -1,9 +1,8 @@
 /* Create user profile schema */
 CREATE TABLE IF NOT EXISTS userprofiles(
-    ID BIGINT(20) NOT NULL AUTO_INCREMENT ,
-    Name VARCHAR(255) NOT NULL,
-    Email VARCHAR(255) NOT NULL,
-    PRIMARY KEY (ID)
+    id BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL
 );
 
 /* Create recipe schema */

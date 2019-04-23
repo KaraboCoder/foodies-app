@@ -6,6 +6,8 @@ import com.foodies.foodies.Services.IRecipesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class RecipesService implements IRecipesService {
 
@@ -28,8 +30,8 @@ public class RecipesService implements IRecipesService {
     }
 
     @Override
-    public Recipe FindRecipeByID(Long ID) {
-        return null;
+    public Optional<Recipe> FindRecipeByID(Long ID) {
+        return _repo.findById(ID);
     }
 
     @Override

@@ -2,11 +2,13 @@ package com.foodies.foodies.Services;
 
 import com.foodies.foodies.Models.Recipe;
 
+import java.util.Optional;
+
 public interface IRecipesService {
 
     Iterable<Recipe> FetchAllRecipes();
     Iterable<Recipe> FetchUsersRecipes(Long UserId);
-    Recipe FindRecipeByID(Long ID);
+    Optional<Recipe> FindRecipeByID(Long ID);
 
     boolean CreateRecipe(Recipe recipe);
     boolean UpdateRecipe(Long ID, Recipe updated);

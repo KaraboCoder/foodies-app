@@ -1,21 +1,23 @@
 package com.foodies.foodies.Models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "userprofiles")
 public class UserProfile{
     @Id
-    private long ID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String Email;
     private String  Name;
 
-    public long getID() {
-        return ID;
+    public Long getId() {
+        return id;
     }
 
-    public void setID(long ID) {
-        this.ID = ID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {
