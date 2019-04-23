@@ -4,11 +4,9 @@ import com.foodies.foodies.constants.RecipeDifficulties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "recipes")
+@Table(name = "recipe")
 public class Recipe {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
@@ -25,13 +23,6 @@ public class Recipe {
     private String displayPictureUrl;
     private String timeToPrepare;
     private RecipeDifficulties difficultyLevel;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "recipe")
-    private Set<RecipeCategory> categories = new HashSet<>();
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "recipe")
-    private Set<Ingredient> ingredients = new HashSet<>();
-
 
     public long getId() {
         return id;
@@ -73,12 +64,12 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public String getDisplayPicture() {
+    public String getDisplayPictureUrl() {
         return displayPictureUrl;
     }
 
-    public void setDisplayPicture(String displayPicture) {
-        this.displayPictureUrl = displayPicture;
+    public void setDisplayPictureUrl(String displayPictureUrl) {
+        this.displayPictureUrl = displayPictureUrl;
     }
 
     public String getTimeToPrepare() {
@@ -95,21 +86,5 @@ public class Recipe {
 
     public void setDifficultyLevel(RecipeDifficulties difficultyLevel) {
         this.difficultyLevel = difficultyLevel;
-    }
-
-    public Set<RecipeCategory> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<RecipeCategory> categories) {
-        this.categories = categories;
-    }
-
-    public Set<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(Set<Ingredient> ingredients) {
-        this.ingredients = ingredients;
     }
 }

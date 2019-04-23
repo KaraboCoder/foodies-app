@@ -5,10 +5,6 @@ insert into recipe values (1, 'Mexican Salami', 0, 'No description',
     '1. Start with water', 'no-picture', '2 mins', 'EASY')
 ON DUPLICATE KEY UPDATE ID=ID;
 
-insert into recipe values (2, 'Tikka', 0, 'No description',
-    '1. Add chilli 2. Water  water', 'no-picture', '2 mins', 'MEDIUM')
-ON DUPLICATE KEY UPDATE ID=ID;
-
 
 --Ingredients
 insert into shopping_list_item values (1, 'Chutney')

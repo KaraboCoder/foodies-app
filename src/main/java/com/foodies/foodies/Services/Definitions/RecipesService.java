@@ -4,14 +4,16 @@ import com.foodies.foodies.DAO.RecipesRepository;
 import com.foodies.foodies.Models.Recipe;
 import com.foodies.foodies.Services.IRecipesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RecipesService implements IRecipesService {
 
     private RecipesRepository _repo;
 
     @Autowired
     public RecipesService(RecipesRepository repo) {
-        _repo = repo;
+        this._repo = repo;
     }
 
 

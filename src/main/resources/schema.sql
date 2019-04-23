@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS recipe(
     instructions LONGTEXT NOT NULL,
     displayPictureUrl  TEXT,
     timeToPrepare VARCHAR(100),
-    difficultyLevel VARCHAR(50),
+    difficultyLevel VARCHAR(50)
 );
 
 

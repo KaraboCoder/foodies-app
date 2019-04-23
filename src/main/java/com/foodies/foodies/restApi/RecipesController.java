@@ -19,7 +19,7 @@ public class RecipesController {
 
     @Autowired
     public RecipesController(IRecipesService recipeService) {
-        _recipeService = recipeService;
+        this._recipeService = recipeService;
     }
 
     @GetMapping("")
