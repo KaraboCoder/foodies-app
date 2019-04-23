@@ -16,6 +16,9 @@ public class Recipe {
     @NotNull
     @Column(unique = true)
     private String title;
+
+    @Column(name = "OwnerId")
+    private Long owner = 0L;
     private String description;
 
     @NotNull
