@@ -17,7 +17,7 @@ public class Ingredient {
     private String UnitOfMeasurement;
 
     @NotNull
-    private String Quantity;
+    private float Quantity;
     private String MoreInfo;
     private int EstimatedPrice;
 
