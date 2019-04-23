@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "recipes")
 public class Recipe {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
@@ -22,6 +23,10 @@ public class Recipe {
     private String displayPicture;
     private String timeToPrepare;
     private RecipeDifficulties difficultyLevel;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "recipe")
     private Set<RecipeCategory> categories = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "recipe")
     private Set<Ingredient> ingredients = new HashSet<>();
 }
