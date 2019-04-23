@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static com.foodies.foodies.helpers.GenericHelpers.isNullOrEmpty;
+
 @Service
 public class RecipesService implements IRecipesService {
 
@@ -43,18 +45,41 @@ public class RecipesService implements IRecipesService {
             _repo.save(recipe);
             return true;
         } catch (Exception e) {
-            _logger.error("Failed to created recipe: " + recipe.toString() + ". Error: " + e.getMessage());
+            _logger.error("Failed to created recipe: " + recipe.toString() + ". Error details: " + e.getMessage());
             return false;
         }
     }
 
     @Override
     public boolean UpdateRecipe(Long ID, Recipe updated) {
-        return false;
+
+        if( !_repo.existsById(ID)) return  false;
+
+        try{
+            var recipeToUpdate = this.FindRecipeByID(ID).orElseThrow();
+
+            if( isNullOrEmpty(updated.getTitle()) ) recipeToUpdate.setTitle(updated.getTitle());
+
+            _repo.save(recipeToUpdate);
+            return  true;
+
+        }catch (Exception e){
+            // LOG Error message
+            _logger.error("Failed to update asset with Id: " + ID + ". Error details: " + e.getMessage());
+            return  false;
+        }
+
     }
 
     @Override
     public boolean DeleteRecipe(Long userId, Long ID) {
-        return false;
+
+        try {
+            _repo.deleteById(ID);
+            return true;
+        } catch (Exception e) {
+            _logger.error("Failed to delete recipe with ID: " + ID + ". Error details: " + e.getMessage());
+            return false;
+        }
     }
 }
