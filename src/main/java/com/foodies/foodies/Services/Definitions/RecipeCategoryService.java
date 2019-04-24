@@ -34,7 +34,14 @@ public class RecipeCategoryService implements IRecipeCatService {
     }
 
     public boolean CreateCategory(Category cat) {
-        return false;
+
+        try {
+            _categoriesRepo.save(cat);
+            return true;
+        } catch (Exception e) {
+            _logger.error("Failed to create shop item. Error details: " + e.getMessage());
+            return false;
+        }
     }
 
     public boolean UpdateCategory(Long ID, Category updated) {
