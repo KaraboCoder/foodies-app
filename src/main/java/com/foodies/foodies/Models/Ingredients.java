@@ -21,13 +21,14 @@ public class Ingredients {
     @NotNull(message = "Ingredient name is required.")
     private String ingredientName;
 
-    private Long categoryId;
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "categoryId", nullable = false)
+    private Categories category;
 
     protected Ingredients() {}
 
-    public Ingredients(String ingredientName, Long categoryId) {
+    public Ingredients(String ingredientName) {
         this.ingredientName = ingredientName;
-        this.categoryId = categoryId;
     }
 
 }

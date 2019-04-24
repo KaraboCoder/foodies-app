@@ -18,16 +18,15 @@ public class RecipeUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "recipeId", nullable = false)
     @NotNull(message = "Recipe ID is required.")
-    private Long recipeId;
+    private Recipes recipe;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "userId", nullable = false)
     @NotNull(message = "User ID is required.")
-    private Long userId;
+    private Users user;
 
     protected RecipeUser() {}
-
-    private RecipeUser(Long recipeId, Long userId) {
-        this.recipeId = recipeId;
-        this.userId = userId;
-    }
 }
