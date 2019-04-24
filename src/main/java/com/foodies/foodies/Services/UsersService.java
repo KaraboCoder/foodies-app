@@ -1,7 +1,7 @@
 package com.foodies.foodies.Services;
 
-import com.foodies.foodies.Models.User;
-import com.foodies.foodies.Models.UserRepository;
+import com.foodies.foodies.Models.Users;
+import com.foodies.foodies.Models.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,22 +12,22 @@ import javax.validation.ValidatorFactory;
 import java.util.Set;
 
 @Service
-public class UserService {
+public class UsersService {
     ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
     Validator validator = validatorFactory.getValidator();
 
     @Autowired
-    UserRepository userRepository;
+    UsersRepository usersRepository;
 
-    public User createUser(User user) {
-        Set<ConstraintViolation<User>> violations = validator.validate(user);
+    public Users createUser(Users user) {
+        Set<ConstraintViolation<Users>> violations = validator.validate(user);
         if (!violations.isEmpty()){
-            for (ConstraintViolation<User> violation : violations) {
+            for (ConstraintViolation<Users> violation : violations) {
                 System.out.println(violation.getMessage());
             }
             return null;
         }else{
-            return userRepository.save(user);
+            return usersRepository.save(user);
         }
     }
 }
