@@ -10,69 +10,68 @@ import java.util.Set;
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ID;
+    private long id;
 
     @OneToOne
-    private ShoppingListItem shoppingItem;
+    private ShoppingListItem shopping_item;
 
     @NotNull
-    private String UnitOfMeasurement;
+    private String unit_of_measurement;
 
     @NotNull
-    private int Quantity;
-    private String MoreInfo;
+    private int quantity;
+    private String more_info;
 
     @ManyToMany(mappedBy = "ingredients")
     private Set<Recipe> recipes = new HashSet<>();
 
-    public Ingredient(ShoppingListItem shoppingItem, @NotNull String unitOfMeasurement, @NotNull int quantity, String moreInfo, Set<Recipe> recipes) {
-        this.shoppingItem = shoppingItem;
-        UnitOfMeasurement = unitOfMeasurement;
-        Quantity = quantity;
-        MoreInfo = moreInfo;
-        this.recipes = recipes;
+    //#region class constructors
+
+    public Ingredient() {
     }
+
+    //#endregion
 
     //# region getters & setters
 
-    public long getID() {
-        return ID;
+    public long getId() {
+        return id;
     }
 
-    public void setID(long ID) {
-        this.ID = ID;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public ShoppingListItem getShoppingItem() {
-        return shoppingItem;
+    public ShoppingListItem getShopping_item() {
+        return shopping_item;
     }
 
-    public void setShoppingItem(ShoppingListItem shoppingItem) {
-        this.shoppingItem = shoppingItem;
+    public void setShopping_item(ShoppingListItem shopping_item) {
+        this.shopping_item = shopping_item;
     }
 
-    public String getUnitOfMeasurement() {
-        return UnitOfMeasurement;
+    public String getUnit_of_measurement() {
+        return unit_of_measurement;
     }
 
-    public void setUnitOfMeasurement(String unitOfMeasurement) {
-        UnitOfMeasurement = unitOfMeasurement;
+    public void setUnit_of_measurement(String unit_of_measurement) {
+        this.unit_of_measurement = unit_of_measurement;
     }
 
     public int getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public void setQuantity(int quantity) {
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
-    public String getMoreInfo() {
-        return MoreInfo;
+    public String getMore_info() {
+        return more_info;
     }
 
-    public void setMoreInfo(String moreInfo) {
-        MoreInfo = moreInfo;
+    public void setMore_info(String more_info) {
+        this.more_info = more_info;
     }
 
     public Set<Recipe> getRecipes() {
@@ -82,6 +81,7 @@ public class Ingredient {
     public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
     }
+
 
     //# endregion
 }

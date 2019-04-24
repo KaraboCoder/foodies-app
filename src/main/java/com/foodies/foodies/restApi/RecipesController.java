@@ -5,11 +5,13 @@ import com.foodies.foodies.Models.Ingredient;
 import com.foodies.foodies.Models.Recipe;
 import com.foodies.foodies.Models.ShoppingListItem;
 import com.foodies.foodies.Services.IRecipesService;
+import com.foodies.foodies.ViewModels.RecipeViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class RecipesController {
 
 
     @GetMapping("recipes/{id}")
-    public ResponseEntity RetriveRecipeByID(@PathVariable("id") Long ID){
+    public ResponseEntity<Recipe> RetriveRecipeByID(@PathVariable("id") Long ID){
 
         Recipe result = _recipeService.FindRecipeByID(ID).orElse(null);
 
@@ -43,9 +45,8 @@ public class RecipesController {
     }
 
     @PostMapping("recipes/create")
-    public ResponseEntity<Recipe> CreateRecipe(@RequestBody Recipe recipe){
-
-
+    @ResponseBody
+    public ResponseEntity CreateRecipe(@RequestBody @Valid RecipeViewModel recipe){
 
         boolean result = _recipeService.CreateRecipe(recipe);
 
@@ -53,7 +54,7 @@ public class RecipesController {
     }
 
     @PutMapping("recipes/{id}")
-    public ResponseEntity<Recipe> UpdateRecipe(@PathVariable("id") Long ID, @RequestBody Recipe recipe){
+    public ResponseEntity UpdateRecipe(@PathVariable("id") Long ID, @RequestBody Recipe recipe){
 
         boolean result = _recipeService.UpdateRecipe(ID, recipe);
 
@@ -61,7 +62,7 @@ public class RecipesController {
     }
 
     @DeleteMapping("recipes/{id}")
-    public ResponseEntity<Recipe> DeleteRecipe(@PathVariable("id") Long ID){
+    public ResponseEntity DeleteRecipe(@PathVariable("id") Long ID){
 
         boolean result = _recipeService.DeleteRecipe(0L, ID);
 

@@ -9,6 +9,7 @@ import com.foodies.foodies.Models.Ingredient;
 import com.foodies.foodies.Models.Recipe;
 import com.foodies.foodies.Models.ShoppingListItem;
 import com.foodies.foodies.Services.IRecipesService;
+import com.foodies.foodies.ViewModels.RecipeViewModel;
 import com.foodies.foodies.helpers.FoodiesGenericHelpers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,21 +58,30 @@ public class RecipesService implements IRecipesService {
     }
 
     @Override
-    public boolean CreateRecipe(Recipe recipe) {
+    public boolean CreateRecipe(RecipeViewModel recipe) {
         try {
-            var category = new Category();
+            var recipeDao = new Recipe();
+            recipeDao.setTitle( recipe.getRecipe().getTitle() );
+            recipeDao.setInstructions( recipe.getRecipe().getInstructions() );
+
+            var category = recipe.getCategory();
             _categoriesRepo.save(category);
-            recipe.setCategory(category);
+            recipeDao.setCategory(category);
 
-            var item = new ShoppingListItem("mm", 11);
-            _itemsRepo.save(item);
-            var ingredient = new Ingredient(item, "mm", 10,null, null);
-            _ingredientRepo.save(ingredient);
-            recipe.getIngredients().add(ingredient);
+            for(var item: recipe.getIngredients()){
+                Ingredient ingredient = new Ingredient();
+                ingredient.setShopping_item( item.getShopping_item() );
+                ingredient.setQuantity( item.getQuantity() );
 
-            _repo.save(recipe);
+                _ingredientRepo.save(ingredient);
+
+                recipeDao.getIngredients().add(ingredient);
+            }
+            _repo.save(recipeDao);
             return true;
+
         } catch (Exception e) {
+
             _logger.error("Failed to created recipe: " + recipe.toString() + ". Error details: " + e.getMessage());
             return false;
         }

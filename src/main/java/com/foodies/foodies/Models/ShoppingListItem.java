@@ -8,38 +8,37 @@ import javax.validation.constraints.NotNull;
 public class ShoppingListItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long ID;
+    private Long id;
 
     @NotNull
-    private  String Name;
-    private float EstimatedPrice;
+    private String name;
+    private float estimated_price;
 
-    public ShoppingListItem(@NotNull String name, float estimatedPrice) {
-        Name = name;
-        EstimatedPrice = estimatedPrice;
+    public ShoppingListItem() {
     }
 
-    public Long getID() {
-        return ID;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    public float getEstimatedPrice() {
-        return EstimatedPrice;
+    public float getEstimated_price() {
+        return estimated_price;
     }
 
-    public void setEstimatedPrice(float estimatedPrice) {
-        EstimatedPrice = estimatedPrice;
+    public void setEstimated_price(float estimated_price) {
+        this.estimated_price = estimated_price;
     }
 }
