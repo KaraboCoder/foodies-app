@@ -21,13 +21,14 @@ public class Instructions {
     @NotNull(message = "Cooking instruction is required.")
     private String CookingInstruction;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "recipeId", nullable = false)
     @NotNull(message = "Recipe ID is required.")
-    private Long recipeId;
+    private Recipes recipe;
 
     protected Instructions() {}
 
-    private Instructions(String CookingInstruction, Long recipeId) {
+    private Instructions(String CookingInstruction) {
         this.CookingInstruction = CookingInstruction;
-        this.recipeId = recipeId;
     }
 }

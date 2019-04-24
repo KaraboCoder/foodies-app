@@ -18,24 +18,27 @@ public class RecipeIngredient {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "recipeId", nullable = false)
     @NotNull(message = "Recipe ID is required.")
-    private Long recipeId;
+    private Recipes recipe;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "ingredientId", nullable = false)
     @NotNull(message = "Ingredient ID is required.")
-    private Long ingredientId;
+    private Ingredients ingredient;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "unitId", nullable = false)
     @NotNull(message = "Unit ID is required.")
-    private Long unitId;
+    private Units unit;
 
     @NotNull(message = "Ingredient quantity is required.")
     private int quantity;
 
     protected RecipeIngredient() {}
 
-    private RecipeIngredient(Long recipeId, Long ingredientId, Long unitId, int quantity) {
-        this.recipeId = recipeId;
-        this.ingredientId = ingredientId;
-        this.unitId = unitId;
+    private RecipeIngredient(int quantity) {
         this.quantity = quantity;
     }
 }
