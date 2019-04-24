@@ -14,4 +14,12 @@ public class Category {
     @NotNull
     private String Name;
     private String Description;
+
+    public Category() {
+        this.ID = 0L;
+        this.Name = "All";
+        this.Description = "Default category for all recipes";
+    }
+
+    @
 }

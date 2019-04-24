@@ -1,9 +1,12 @@
 package com.foodies.foodies.Models;
 
 import com.foodies.foodies.constants.RecipeDifficulties;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "recipe")
@@ -24,7 +27,33 @@ public class Recipe {
     private String time_to_prepare;
     private String  difficulty_level;
 
+    @NonNull
+    @OneToOne
+    private Category category = new Category();
+
+    @NotNull
+    @ManyToMany
+    private Set<Ingredient> ingredients = new HashSet<>();
+
    //# region getters & setters
+
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
     public long getId() {
         return id;
     }
