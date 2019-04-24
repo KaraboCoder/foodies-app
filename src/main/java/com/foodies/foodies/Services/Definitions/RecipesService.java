@@ -60,23 +60,19 @@ public class RecipesService implements IRecipesService {
     @Override
     public boolean CreateRecipe(RecipeViewModel recipe) {
         try {
-            var recipeDao = new Recipe();
-            recipeDao.setTitle( recipe.getRecipe().getTitle() );
-            recipeDao.setInstructions( recipe.getRecipe().getInstructions() );
+            // Todo: Use auto-mapper
+            var recipeDao = recipe.getRecipe();
 
             var category = recipe.getCategory();
             _categoriesRepo.save(category);
             recipeDao.setCategory(category);
 
             for(var item: recipe.getIngredients()){
-                Ingredient ingredient = new Ingredient();
-                ingredient.setShopping_item( item.getShopping_item() );
-                ingredient.setQuantity( item.getQuantity() );
-
-                _ingredientRepo.save(ingredient);
-
-                recipeDao.getIngredients().add(ingredient);
+                _itemsRepo.save( item.getShopping_item() );
+                _ingredientRepo.save( item );
+                recipeDao.getIngredients().add( item );
             }
+
             _repo.save(recipeDao);
             return true;
 
