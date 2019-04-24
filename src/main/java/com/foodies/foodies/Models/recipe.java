@@ -15,7 +15,6 @@ public class Recipe {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private long id;
     @NotNull
-    @Column(unique = true)
     private String title;
     @Column(name = "owner_id")
     private Long owner = 0L;

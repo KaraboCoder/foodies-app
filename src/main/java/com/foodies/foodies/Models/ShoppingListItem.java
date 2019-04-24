@@ -1,7 +1,5 @@
 package com.foodies.foodies.Models;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -14,6 +12,7 @@ public class ShoppingListItem {
 
     @NotNull
     private  String Name;
+    private float EstimatedPrice;
 
     public Long getID() {
         return ID;
@@ -29,5 +28,13 @@ public class ShoppingListItem {
 
     public void setName(String name) {
         Name = name;
+    }
+
+    public float getEstimatedPrice() {
+        return EstimatedPrice;
+    }
+
+    public void setEstimatedPrice(float estimatedPrice) {
+        EstimatedPrice = estimatedPrice;
     }
 }

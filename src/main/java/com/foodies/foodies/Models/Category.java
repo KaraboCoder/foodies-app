@@ -21,5 +21,4 @@ public class Category {
         this.Description = "Default category for all recipes";
     }
 
-    @
 }

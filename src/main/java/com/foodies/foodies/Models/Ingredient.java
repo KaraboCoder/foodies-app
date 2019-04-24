@@ -1,33 +1,19 @@
 package com.foodies.foodies.Models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "recipe_ingredient")
+@Table(name = "ingredient")
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ID;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "shopping_list_item_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private ShoppingListItem item;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "recipe_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private Recipe recipe;
+    @OneToOne
+    private ShoppingListItem shoppingItem;
 
     @NotNull
     private String UnitOfMeasurement;
@@ -40,6 +26,7 @@ public class Ingredient {
     private Set<Recipe> recipes = new HashSet<>();
 
     //# region getters & setters
+
     public long getID() {
         return ID;
     }
@@ -48,20 +35,12 @@ public class Ingredient {
         this.ID = ID;
     }
 
-    public ShoppingListItem getItem() {
-        return item;
+    public ShoppingListItem getShoppingItem() {
+        return shoppingItem;
     }
 
-    public void setItem(ShoppingListItem item) {
-        this.item = item;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setShoppingItem(ShoppingListItem shoppingItem) {
+        this.shoppingItem = shoppingItem;
     }
 
     public String getUnitOfMeasurement() {
@@ -95,5 +74,6 @@ public class Ingredient {
     public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
     }
+
     //# endregion
 }
