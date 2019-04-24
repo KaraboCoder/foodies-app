@@ -25,6 +25,14 @@ public class Ingredient {
     @ManyToMany(mappedBy = "ingredients")
     private Set<Recipe> recipes = new HashSet<>();
 
+    public Ingredient(ShoppingListItem shoppingItem, @NotNull String unitOfMeasurement, @NotNull int quantity, String moreInfo, Set<Recipe> recipes) {
+        this.shoppingItem = shoppingItem;
+        UnitOfMeasurement = unitOfMeasurement;
+        Quantity = quantity;
+        MoreInfo = moreInfo;
+        this.recipes = recipes;
+    }
+
     //# region getters & setters
 
     public long getID() {

@@ -16,7 +16,6 @@ public class Category {
     private String Description;
 
     public Category() {
-        this.ID = 0L;
         this.Name = "All";
         this.Description = "Default category for all recipes";
     }

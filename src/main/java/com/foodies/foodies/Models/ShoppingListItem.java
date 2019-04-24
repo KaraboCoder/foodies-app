@@ -14,6 +14,11 @@ public class ShoppingListItem {
     private  String Name;
     private float EstimatedPrice;
 
+    public ShoppingListItem(@NotNull String name, float estimatedPrice) {
+        Name = name;
+        EstimatedPrice = estimatedPrice;
+    }
+
     public Long getID() {
         return ID;
     }

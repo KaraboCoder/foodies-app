@@ -1,7 +1,13 @@
 package com.foodies.foodies.Services.Definitions;
 
+import com.foodies.foodies.DAO.IngredientRepository;
+import com.foodies.foodies.DAO.RecipeCategoryRepository;
 import com.foodies.foodies.DAO.RecipesRepository;
+import com.foodies.foodies.DAO.ShoppingItemRepository;
+import com.foodies.foodies.Models.Category;
+import com.foodies.foodies.Models.Ingredient;
 import com.foodies.foodies.Models.Recipe;
+import com.foodies.foodies.Models.ShoppingListItem;
 import com.foodies.foodies.Services.IRecipesService;
 import com.foodies.foodies.helpers.FoodiesGenericHelpers;
 import org.slf4j.Logger;
@@ -15,11 +21,23 @@ import java.util.Optional;
 public class RecipesService implements IRecipesService {
 
     private RecipesRepository _repo;
+
+//    TODO: CREATE SERVICES FOR THESE
+    private RecipeCategoryRepository _categoriesRepo;
+    private IngredientRepository _ingredientRepo;
+    private ShoppingItemRepository _itemsRepo;
+
     private Logger _logger = LoggerFactory.getLogger(RecipesService.class);
 
     @Autowired
-    public RecipesService(RecipesRepository repo) {
+    public RecipesService(RecipesRepository repo,
+                          RecipeCategoryRepository catRepo,
+                          IngredientRepository ingredientRepo,
+                          ShoppingItemRepository itemsRepo) {
         this._repo = repo;
+        this._categoriesRepo = catRepo;
+        this._ingredientRepo = ingredientRepo;
+        this._itemsRepo = itemsRepo;
     }
 
 
@@ -41,6 +59,16 @@ public class RecipesService implements IRecipesService {
     @Override
     public boolean CreateRecipe(Recipe recipe) {
         try {
+            var category = new Category();
+            _categoriesRepo.save(category);
+            recipe.setCategory(category);
+
+            var item = new ShoppingListItem("mm", 11);
+            _itemsRepo.save(item);
+            var ingredient = new Ingredient(item, "mm", 10,null, null);
+            _ingredientRepo.save(ingredient);
+            recipe.getIngredients().add(ingredient);
+
             _repo.save(recipe);
             return true;
         } catch (Exception e) {
