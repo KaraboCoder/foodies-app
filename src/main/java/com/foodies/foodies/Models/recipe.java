@@ -1,6 +1,7 @@
 package com.foodies.foodies.Models;
 
 import com.foodies.foodies.constants.RecipeDifficulties;
+import io.swagger.annotations.ApiModel;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
@@ -10,6 +11,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "recipe")
+
+@ApiModel(description = "Recipe details. ")
 public class Recipe {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )

@@ -6,6 +6,8 @@ import com.foodies.foodies.Models.Recipe;
 import com.foodies.foodies.Models.ShoppingListItem;
 import com.foodies.foodies.Services.IRecipesService;
 import com.foodies.foodies.ViewModels.RecipeViewModel;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api")
+
+@Api(value="Recipe management system")
 public class RecipesController {
     private IRecipesService _recipeService;
 
@@ -26,6 +30,7 @@ public class RecipesController {
     }
 
     @GetMapping("/recipes")
+    @ApiOperation(value = "List all saved recipes")
     public ResponseEntity<List<Recipe>> RetriveAllRecipes(){
 
         List<Recipe> results = new ArrayList<>();
