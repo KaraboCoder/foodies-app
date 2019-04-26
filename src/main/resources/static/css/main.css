@@ -1,0 +1,7 @@
+.main-content-wrapper{
+    min-height: 100vh;
+}
+
+footer>h1{
+    font-size: 0.em;
+}
