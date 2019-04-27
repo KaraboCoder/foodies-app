@@ -19,7 +19,6 @@ public class UsersController {
 
     @PostMapping("/user")
     public String createUser(@RequestBody Users user, Model model){
-        System.out.println(user.toString());
         Users newUser = usersService.createUser(user);
         model.addAttribute("user", newUser);
 //       return ResponseEntity.ok(newUser);
