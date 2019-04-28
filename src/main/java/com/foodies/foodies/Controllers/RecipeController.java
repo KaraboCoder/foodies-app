@@ -14,6 +14,13 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/*
+*   TODO: We need to use a view model in order
+*    to capture all info required to generate a
+*    useful recipe.
+* */
+
 @Controller
 public class RecipeController {
     private IRecipeService _recipeService;
