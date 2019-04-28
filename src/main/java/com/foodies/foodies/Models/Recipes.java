@@ -24,11 +24,37 @@ public class Recipes {
     @NotNull(message = "Preparation time (in minutes) is required.")
     private int preparationTime; // minutes
 
-    protected Recipes() {}
+    //#region constructors
+    public Recipes() {}
 
     public Recipes(String recipeName, int preparationTime) {
         this.recipeName = recipeName;
         this.preparationTime = preparationTime;
     }
+    //#endregion
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
+    }
+
+    public int getPreparationTime() {
+        return preparationTime;
+    }
+
+    public void setPreparationTime(int preparationTime) {
+        this.preparationTime = preparationTime;
+    }
 }
