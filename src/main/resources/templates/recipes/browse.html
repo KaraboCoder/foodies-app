@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{fragments/_layout}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="content" class="main-content-wrapper my-5">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Time to prepare</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="recipe, status: ${recipeList}">
+            <th scope="row" th:text="${status.count}"></th>
+            <td th:text="${recipe.recipeName}"></td>
+            <td th:text="${recipe.preparationTime}">Otto</td>
+            <td>
+                <span class="badge badge-secondary">Details</span>
+                <!--TODO: If current recipe belongs to logged in user-->
+                <span class="badge badge-secondary">Update</span>
+                <span class="badge badge-secondary">Delete</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
