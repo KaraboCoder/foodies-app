@@ -42,13 +42,13 @@ public class RecipeController {
     }
 
     @GetMapping("/recipes/create")
-    public String recipeCreateForm(Model model) {
+    public String ShowRecipeCreateForm(Model model) {
         model.addAttribute("recipe", new Recipes());
         return "recipes/create";
     }
 
     @PostMapping("/recipes/save")
-    public String addUser(@Valid Recipes recipe, BindingResult result, Model model) {
+    public String SaveNewRecipe(@Valid Recipes recipe, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "redirect:/recipes/create";
         }
@@ -56,6 +56,12 @@ public class RecipeController {
         boolean isCreated = _recipeService.CreateRecipe(recipe);
 
         return isCreated? "redirect:/recipes/browse" :  "redirect:/recipes/create";
+    }
+
+    @PostMapping("/recipes/update/{id}")
+    public String UpdateRecipe(@Valid Recipes recipe, @PathVariable("id") Long ID){
+        boolean isUpdated = _recipeService.UpdateRecipe(ID, recipe);
+        return isUpdated? "redirect:/recipes/browse" :  "redirect:/recipes/" + ID;
     }
 
     @GetMapping("recipes/delete/{recipeId}")

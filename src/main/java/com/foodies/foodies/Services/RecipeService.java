@@ -47,7 +47,21 @@ public class RecipeService implements IRecipeService {
 
     @Override
     public boolean UpdateRecipe(Long ID, Recipes updated) {
-        return false;
+        if( !this._recipesRepo.existsById(ID)) return  false;
+
+        try{
+            Recipes recipeToUpdate = this.FindRecipeByID(ID).orElse(null);
+
+            recipeToUpdate.setRecipeName(updated.getRecipeName());
+            recipeToUpdate.setPreparationTime(updated.getPreparationTime());
+
+            this._recipesRepo.save(recipeToUpdate);
+            return  true;
+
+        }catch (Exception e){
+            _logger.error("Failed to update recipe with Id: " + ID + ". Error details: " + e.getMessage());
+            return  false;
+        }
     }
 
     @Override

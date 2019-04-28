@@ -22,10 +22,9 @@
             <td th:text="${recipe.recipeName}"></td>
             <td th:text="|${recipe.preparationTime} mins|">Otto</td>
             <td>
-                <a th:href="@{ ~/recipes/{recipeId}(recipeId=${recipe.id}) }"><span class="badge badge-secondary">Details</span></a>
+                <a th:href="@{ ~/recipes/{recipeId}(recipeId=${recipe.id}) }"><span class="badge badge-secondary">Edit</span></a>
                 <!--TODO: If current recipe belongs to logged in user-->
-                <span class="badge badge-secondary">Update</span>
-                <a th:href="@{ ~/recipes/delete/{recipeId}(recipeId=${recipe.id}) }"><span class="badge badge-secondary">Delete</span></a>
+                <a th:href="@{ ~/recipes/delete/{recipeId}(recipeId=${recipe.id}) }"><span class="badge badge-danger">Delete</span></a>
             </td>
         </tr>
         </tbody>
