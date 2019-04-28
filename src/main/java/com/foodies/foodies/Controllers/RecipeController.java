@@ -5,9 +5,12 @@ import com.foodies.foodies.Services.contracts.IRecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +39,23 @@ public class RecipeController {
         Recipes recipe = _recipeService.FindRecipeByID(ID).orElse(null);
         model.addAttribute("recipe", recipe);
         return "recipes/detail-view";
+    }
+
+    @GetMapping("/recipes/create")
+    public String recipeCreateForm(Model model) {
+        model.addAttribute("recipe", new Recipes());
+        return "recipes/create";
+    }
+
+    @PostMapping("/recipes/save")
+    public String addUser(@Valid Recipes recipe, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "redirect:/recipes/create";
+        }
+
+        boolean isCreated = _recipeService.CreateRecipe(recipe);
+
+        return isCreated? "redirect:/recipes/browse" :  "redirect:/recipes/create";
     }
 
     @GetMapping("recipes/delete/{recipeId}")

@@ -34,7 +34,15 @@ public class RecipeService implements IRecipeService {
 
     @Override
     public boolean CreateRecipe(Recipes recipe) {
-        return false;
+        try {
+            _recipesRepo.save(recipe);
+            return true;
+
+        } catch (Exception e) {
+
+            _logger.error("Failed to created recipe: " + recipe.getRecipeName() + ". Error details: " + e.getMessage());
+            return false;
+        }
     }
 
     @Override

@@ -25,7 +25,7 @@ public class Recipes {
     private int preparationTime; // minutes
 
     //#region constructors
-    protected Recipes() {}
+    public Recipes() {}
 
     public Recipes(String recipeName, int preparationTime) {
         this.recipeName = recipeName;
