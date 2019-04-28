@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/_layout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/_layout}">
 <head>
     <title>Foodies | Home</title>
 </head>
@@ -21,6 +21,11 @@
         </p>
     </div>
 
+    <hr>
+    <h2>Thymeleaf stuff</h2>
+    <p class="container" th:text="${message}"|></p>
+    <p class="container" th:text="${umessage}"|>Normal: </p>
+    <p class="container" th:utext="${umessage}"|>Unormal: </p>
 </div>
 
 
