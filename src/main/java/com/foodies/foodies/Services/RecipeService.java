@@ -3,6 +3,8 @@ package com.foodies.foodies.Services;
 import com.foodies.foodies.Models.Recipes;
 import com.foodies.foodies.Repositories.RecipesRepository;
 import com.foodies.foodies.Services.contracts.IRecipeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,8 @@ import java.util.Optional;
 
 @Service
 public class RecipeService implements IRecipeService {
+    private Logger _logger = LoggerFactory.getLogger(RecipeService.class);
+
     @Autowired
     private RecipesRepository _recipesRepo;
 
@@ -25,7 +29,7 @@ public class RecipeService implements IRecipeService {
 
     @Override
     public Optional<Recipes> FindRecipeByID(Long ID) {
-        return Optional.empty();
+        return _recipesRepo.findById(ID);
     }
 
     @Override
@@ -40,6 +44,12 @@ public class RecipeService implements IRecipeService {
 
     @Override
     public boolean DeleteRecipe(Long userId, Long ID) {
-        return false;
+        try {
+            _recipesRepo.deleteById(ID);
+            return true;
+        } catch (Exception e) {
+            _logger.error("Failed to delete recipe with ID: " + ID + ". Error details: " + e.getMessage());
+            return false;
+        }
     }
 }

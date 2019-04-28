@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{fragments/_layout}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Foodies | Recipe details</title>
+</head>
+<body>
+
+<div layout:fragment="content" class="main-content-wrapper my-5">
+    <h1>Recipe details<small th:text="| - ${recipe.recipeName}|"></small></h1>
+
+    <ul class="list-group" th:object="${recipe}">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Title:
+            <span th:text="*{recipeName}" class="badge badge-primary badge-pill"></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Time to prepare:
+            <span th:text="|*{preparationTime} mins|" class="badge badge-primary badge-pill">2</span>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

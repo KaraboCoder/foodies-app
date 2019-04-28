@@ -1,3 +1,7 @@
 .main-content-wrapper{
     min-height: 100vh;
 }
+
+tr:hover{
+    background: aliceblue;
+}
