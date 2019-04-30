@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" layout:decorate="~{fragments/_layout}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>Foodies | Recipe details</title>
+    <link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
+
 </head>
-<body>
+<body class="bookImage">
 
-<div layout:fragment="content" class="main-content-wrapper my-5">
+<div layout:fragment="content" >
 
-    <section id="recipe-create-form" class="content-container">
+    <section id="recipe-create-form" class="content-container fields" >
         <article>
             <form th:action="@{/recipes/save}" th:object="${recipe}" method="post">
 

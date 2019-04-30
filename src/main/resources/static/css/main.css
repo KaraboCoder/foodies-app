@@ -5,3 +5,8 @@
 tr:hover{
     background: aliceblue;
 }
+
+.bookImage {
+    width: 100%;
+    background-image: url('../img/bookimage.jpg');
+}

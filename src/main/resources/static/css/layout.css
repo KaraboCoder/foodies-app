@@ -1,0 +1,13 @@
+.bookImage {
+    background-image: url('../img/singlepage.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: 2px dashed #333
+}
+
+.fields {
+    position: relative;
+    width: 21%;
+    left: 37%;
+}
