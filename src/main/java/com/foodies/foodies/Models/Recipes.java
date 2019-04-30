@@ -7,18 +7,21 @@ import lombok.NoArgsConstructor;
 
 import lombok.Data;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Data
 @Entity
-public class Recipes {
+@Table(name = "recipe")
+public class Recipes implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull(message = "Recipe name is required.")
+    @NotBlank(message = "Recipe name is required.")
     private String recipeName;
 
     @NotNull(message = "Preparation time (in minutes) is required.")

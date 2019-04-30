@@ -8,28 +8,31 @@ import lombok.NoArgsConstructor;
 import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 
 @Data
 @Entity
-public class Users{
+@Table(name = "users")
+public class Users implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull(message = "First name is required.")
+    @NotBlank(message = "First name is required.")
     private String firstName;
 
-    @NotNull(message = "Last name is required.")
+    @NotBlank(message = "Last name is required.")
     private String lastName;
 
-    @Email(message = "Invalid email address.")
+    @NotBlank(message = "Invalid email address.")
     private String email;
 
-    @NotNull(message = "Password is required.")
+    @NotBlank(message = "Password is required.")
     @Size(min = 8, message = "Password should have at least 8 characters.")
     private String password;
 
