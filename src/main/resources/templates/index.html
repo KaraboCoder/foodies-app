@@ -1,11 +1,28 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/_layout}">
 <head>
-    <title>Home</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Foodies | Home</title>
 </head>
 <body>
-<!--<p th:text="'Hello, ' + ${name} + '!'" />-->
-<h1> Hello world!</h1>
+
+<div layout:fragment="content" class="main-content-wrapper my-5">
+
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to, <b>Foodies</b>!</h1>
+        <p class="lead">This is a simple online hub that lets you
+            share your recipes with the world.</p>
+        <hr class="my-4">
+        <p>You can get started by  creating a recipe or
+            browsing through some of the most popular recipes on the platform
+        </p>
+        <p class="lead">
+            <a class="btn btn-outline-primary btn-lg" href="#" role="button">Create recipe</a>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Show popular recipes</a>
+        </p>
+    </div>
+
+</div>
+
+
 </body>
 </html>

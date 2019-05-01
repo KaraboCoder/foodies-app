@@ -13,15 +13,12 @@ import java.util.Set;
 
 @Service
 public class UsersService {
-    private ValidatorFactory validatorFactory;
-    private Validator validator;
-    @Autowired
-    private UsersRepository usersRepository;
+    ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+    Validator validator = validatorFactory.getValidator();
 
-    public UsersService(){
-        validatorFactory= Validation.buildDefaultValidatorFactory();
-        validator = validatorFactory.getValidator();
-    }
+    @Autowired
+    UsersRepository usersRepository;
+
     public Users createUser(Users user) {
         Set<ConstraintViolation<Users>> violations = validator.validate(user);
         if (!violations.isEmpty()){
