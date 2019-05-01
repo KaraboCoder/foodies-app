@@ -9,7 +9,6 @@ public class RecipeCategoryDao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    @Column(unique=true)
     private String name;
     private String description;
 

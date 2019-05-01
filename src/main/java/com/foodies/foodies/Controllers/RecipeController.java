@@ -1,6 +1,5 @@
 package com.foodies.foodies.Controllers;
 
-import com.foodies.foodies.Models.Recipes;
 import com.foodies.foodies.Services.contracts.IRecipeService;
 import com.foodies.foodies.ViewModels.RecipeViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,19 +45,23 @@ public class RecipeController {
     @GetMapping("recipes/{recipeId}")
     public String GetRecipeDetails(@PathVariable("recipeId") Long ID, Model model){
 
-        Recipes recipe = _recipeService.FindRecipeByID(ID).orElse(null);
+        RecipeViewModel recipe = _recipeService.FindRecipeByID(ID);
+
+        // TODO: Create /error page if not found
         model.addAttribute("recipe", recipe);
         return "recipes/detail-view";
     }
 
     @GetMapping("/recipes/create")
     public String ShowRecipeCreateForm(Model model) {
-        model.addAttribute("recipe", new Recipes());
+
+        model.addAttribute("recipe", new RecipeViewModel());
+
         return "recipes/create";
     }
 
     @PostMapping("/recipes/save")
-    public String SaveNewRecipe(@Valid Recipes recipe, BindingResult result, Model model) {
+    public String SaveNewRecipe(@Valid RecipeViewModel recipe, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "redirect:/recipes/create";
         }
@@ -69,19 +72,18 @@ public class RecipeController {
     }
 
     @PostMapping("/recipes/update/{id}")
-    public String UpdateRecipe(@Valid Recipes recipe, @PathVariable("id") Long ID){
+    public String UpdateRecipe(@Valid RecipeViewModel recipe, @PathVariable("id") Long ID){
+
         boolean isUpdated = _recipeService.UpdateRecipe(ID, recipe);
+
         return isUpdated? "redirect:/recipes/browse" :  "redirect:/recipes/" + ID;
     }
 
     @GetMapping("recipes/delete/{recipeId}")
     public String DeleteRecipe(@PathVariable("recipeId") Long ID, Model model){
-        Recipes recipe = _recipeService.FindRecipeByID(ID).orElse(null);
-        if(recipe == null) return "error";
 
         boolean result = _recipeService.DeleteRecipe(0L, ID);
         model.addAttribute("isDeleted", result);
-        model.addAttribute("recipe", recipe);
 
         return "recipes/action-confirm";
     }
