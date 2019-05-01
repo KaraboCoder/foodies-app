@@ -24,11 +24,13 @@ public class Ingredients implements Serializable {
     @NotBlank(message = "Ingredient name is required.")
     private String ingredientName;
 
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "categoryId")
-    private Categories category;
+    @NotNull
+    private String units;
 
-    protected Ingredients() {}
+    @NotNull
+    private float amount;
+
+    public Ingredients() {}
 
     Ingredients(String ingredientName) {
         this.ingredientName = ingredientName;
