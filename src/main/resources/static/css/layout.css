@@ -31,8 +31,8 @@
 
 .fields {
     position: relative;
-    width: 21%;
-    left: 37%;
+    width: 28%;
+    left: 33%;
 }
 
 .bg-light {
@@ -115,4 +115,11 @@
      min-height: 100vh;
 }
 
+.multiSelection {
+    width: 100% !important;
+}
+
+.chosen-container {
+    width: 100% !important;
+}
 
