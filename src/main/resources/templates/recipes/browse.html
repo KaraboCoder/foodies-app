@@ -3,12 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
 </head>
-<body>
+<body class="openBookClean">
 
 <div layout:fragment="content" class="main-content-wrapper my-5">
-    <table class="table table-striped">
+    <table class="table table-striped tableStyling">
         <thead>
+        <tr>
+            <td>Select Country:</td>
+            <td>
+                <select>
+                    <option value=""> -- </option>
+                    <option th:each="country : ${Lister}"
+                            th:value="1"
+                            th:utext="${country}"/>
+                </select>
+
+            </td>
+        </tr>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
@@ -31,7 +44,7 @@
     </table>
 
     <hr>
-    <button class="btn btn-primary w-100">
+    <button class="btn btn-primary createButton">
         <a class="text-white" th:href="@{~/recipes/create}">Create new</a>
     </button>
 </div>

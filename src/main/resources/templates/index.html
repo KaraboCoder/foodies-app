@@ -1,14 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/_layout}">
-<link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
+
 <head>
     <title>Foodies | Home</title>
+    <link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
 </head>
-<body>
+<body class="homePageBackground">
 
 <div layout:fragment="content" class="main-content-wrapper my-5">
 
-    <div class="jumbotron text-center bookImage">
+    <div class="jumbotron text-center ">
         <h1 class="display-4">Welcome to, <b>Foodies</b>!</h1>
         <p class="lead">This is a simple online hub that lets you
             share your recipes with the world.</p>
@@ -18,15 +19,15 @@
         </p>
         <p class="lead">
             <a class="btn btn-outline-primary btn-lg" th:href="@{~/recipes/create}" role="button">Create recipe</a>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Show popular recipes</a>
+            <a class="btn btn-primary btn-lg" th:href="@{~/recipes/browse}" role="button">Show popular recipes</a>
         </p>
     </div>
 
     <hr>
-    <h2>Thymeleaf stuff</h2>
-    <p class="container" th:text="${message}"|></p>
-    <p class="container" th:text="${umessage}"|>Normal: </p>
-    <p class="container" th:utext="${umessage}"|>Unormal: </p>
+<!--    <h2>Thymeleaf stuff</h2>-->
+<!--    <p class="container" th:text="${message}"|></p>-->
+<!--    <p class="container" th:text="${umessage}"|>Normal: </p>-->
+<!--    <p class="container" th:utext="${umessage}"|>Unormal: </p>-->
 </div>
 
 

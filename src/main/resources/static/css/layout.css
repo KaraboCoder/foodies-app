@@ -1,13 +1,66 @@
-.bookImage {
+.singlePageBook {
     background-image: url('../img/singlepage.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    border: 2px dashed #333
+}
+
+.openBookClean {
+    background-image: url('../img/openbookclean.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.homePageBackground {
+    background-image: url('../img/notebook_pencil_recipe_seasoning_board.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.text-center {
+    opacity: 0.8;
 }
 
 .fields {
     position: relative;
     width: 21%;
     left: 37%;
+}
+
+.bg-light {
+    background-color: aliceblue !important;
+    opacity: 0.85;
+}
+
+.tableStyling {
+    width: 66%;
+    position: relative;
+    left: 14%;
+    margin-bottom: 1rem;
+    background-color: aliceblue;
+    opacity: 0.9;
+    border: solid 2px blue;
+}
+
+.createButton {
+    position: relative;
+    left: 47%;
+}
+
+.editPageLayout {
+    color: blue;
+    position: relative;
+    width: 27%;
+    left: -3%;
+}
+
+#backButton {
+    position: relative;
+    left: 3%;
+}
+
+#saveChangesButton {
+    position: relative;
+    left: 61%;
 }
