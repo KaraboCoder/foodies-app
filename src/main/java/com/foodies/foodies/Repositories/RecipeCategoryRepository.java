@@ -1,8 +1,10 @@
 package com.foodies.foodies.Repositories;
 
 import com.foodies.foodies.Models.RecipeCategory;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface RecipeCategoryRepository extends CrudRepository<RecipeCategory, Long> {
+@Repository
+public interface RecipeCategoryRepository extends JpaRepository<RecipeCategory, Long> {
 
 }
