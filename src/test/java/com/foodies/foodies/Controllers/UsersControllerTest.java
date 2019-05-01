@@ -1,42 +1,44 @@
 package com.foodies.foodies.Controllers;
 
-import org.mockito.Mockito.*;
+import static org.mockito.Mockito.*;
+import org.mockito.Mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.when;
+import org.mockito.InjectMocks;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.MockitoRule;
+import org.mockito.Spy;
+
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.Before;
 import org.junit.Assert;
 
 import org.springframework.ui.Model;
-
 import com.foodies.foodies.Services.UsersService;
-import com.foodies.foodies.Models.UsersRepository;
+import com.foodies.foodies.Repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.mockito.Mock;
-import org.mockito.InjectMocks;
-import org.mockito.Spy;
 import com.foodies.foodies.Models.Users;
-import com.foodies.foodies.Models.UsersRepository;
+import com.foodies.foodies.Repositories.UsersRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UsersControllerTest{
-
-    //@Spy
-    //@InjectMocks
-    //private UsersController usersController;
-    private UsersController usersController;
+    @InjectMocks
+    private UsersController usersController=new UsersController();
     @Mock
-    UsersService usersService;
+    private Model model;
 
-    @Before
-    public void before(){
-        usersController = new UsersController();
-    }
+    @Mock
+    private UsersService usersService;
 
     @Test
     public void creatUser_shouldReturnUser(){
-//        Mockito.when(worker.trans(Mockito.anyString())).thenReturn("cold");
-//        TransResponse response = controller.translate(transRequest, null, new MockHttpServletRequest());
-        Assert.assertEquals("1", "1");
+        Users user= mock(Users.class);
+        when(usersService.createUser(user)).thenReturn(user);
+        Users newUser = usersService.createUser(user);
+        String returnValue = usersController.createUser(user,model);
+        verify(model, times(1)).addAttribute("user", newUser );
+        Assert.assertEquals("user", returnValue);
     }
 }

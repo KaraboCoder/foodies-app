@@ -1,4 +1,4 @@
-package com.foodies.foodies.Models;
+package com.foodies.foodies.Repositories;
 
 public class CategoriesRepositoryTest {
 }
