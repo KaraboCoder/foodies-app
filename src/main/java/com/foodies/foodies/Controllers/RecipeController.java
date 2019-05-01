@@ -74,6 +74,11 @@ public class RecipeController {
         return isCreated? "redirect:/recipes/browse" :  "redirect:/recipes/create";
     }
 
+    @GetMapping("/recipes/shopping")
+    public String ShowShoppingList(Model model) {
+        return "recipes/shopping-list";
+    }
+
     @PostMapping("/recipes/update/{id}")
     public String UpdateRecipe(@Valid Recipes recipe, @PathVariable("id") Long ID){
         boolean isUpdated = _recipeService.UpdateRecipe(ID, recipe);
