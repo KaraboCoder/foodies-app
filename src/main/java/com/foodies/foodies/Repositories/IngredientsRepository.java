@@ -1,6 +1,6 @@
-package com.foodies.foodies.Models;
+package com.foodies.foodies.Repositories;
 
-import java.util.List;
+import com.foodies.foodies.Models.Ingredients;
 import org.springframework.data.repository.CrudRepository;
 
 public interface IngredientsRepository extends CrudRepository<Ingredients, Long> {

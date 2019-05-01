@@ -1,7 +1,7 @@
 package com.foodies.foodies.Services;
 
 import com.foodies.foodies.Models.Users;
-import com.foodies.foodies.Models.UsersRepository;
+import com.foodies.foodies.Repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

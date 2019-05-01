@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{fragments/_layout}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Foodies | Recipe details</title>
+</head>
+<body>
+
+<div layout:fragment="content" class="main-content-wrapper my-5">
+    <h1>Recipe details<small th:text="| - ${recipe.recipeName}|"></small></h1>
+
+
+    <article class="container">
+        <form th:action="@{ /recipes/update/{id}(id=${recipe.id}) }" th:object="${recipe}" method="post">
+
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text"
+                       th:field="*{recipeName}"
+                       class="form-control"
+                       id="title"
+                       placeholder="Name of your recipe"/>
+            </div>
+            <div class="form-group">
+                <label for="time-span">Time to prepare</label>
+                <input type="number" th:field="*{preparationTime}" class="form-control" id="time-span"
+                       placeholder="Time to prepare in minutes"/>
+            </div>
+
+            <aside class="row">
+            <a th:href="@{~/recipes/browse}" class="btn btn-primary w-40">Back</a>
+            <button type="submit" class="btn btn-primary w-40">Save changes</button>
+            </aside>
+        </form>
+    </article>
+</div>
+
+</body>
+</html>
