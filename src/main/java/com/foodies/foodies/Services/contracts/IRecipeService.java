@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface IRecipeService {
     Iterable<RecipeViewModel> FetchAllRecipes();
     Iterable<RecipeViewModel> FetchUsersRecipes(Long UserId);
-    Optional<RecipeViewModel> FindRecipeByID(Long ID);
+    RecipeViewModel FindRecipeByID(Long ID);
 
     boolean CreateRecipe(RecipeViewModel recipe);
     boolean UpdateRecipe(Long ID, RecipeViewModel updated);

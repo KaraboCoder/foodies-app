@@ -17,7 +17,7 @@ public class RecipeRestController {
     private IRecipeService _recipeApiService;
 
     @GetMapping("/recipes/all")
-    private ResponseEntity<List<RecipeViewModel>> GetAll(){
+    public ResponseEntity<List<RecipeViewModel>> GetAll(){
         var responseBody = _recipeApiService.FetchAllRecipes();
 
 
@@ -25,10 +25,35 @@ public class RecipeRestController {
     }
 
 
+    @GetMapping("/recipes/{recipeId}")
+    public  ResponseEntity<RecipeViewModel> GetById(@PathVariable("recipeId") Long ID){
+        var result = _recipeApiService.FindRecipeByID(ID);
+
+        return result != null?  new ResponseEntity(result, HttpStatus.OK) : new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+
+
     @PostMapping("/create")
-    private ResponseEntity AddRecipe(@RequestBody @Valid RecipeViewModel recipe){
+    public ResponseEntity<Object> AddRecipe(@RequestBody @Valid RecipeViewModel recipe){
 
         boolean result = _recipeApiService.CreateRecipe(recipe);
+
+        return this.GenerateNoContentResponse(result);
+    }
+
+    @PutMapping("recipes/{recipeId}")
+    public ResponseEntity<Object> UpdateRecipe(@PathVariable("recipeId") Long ID, @RequestBody RecipeViewModel recipe){
+
+        boolean result = _recipeApiService.UpdateRecipe(ID, recipe);
+
+        return this.GenerateNoContentResponse(result);
+    }
+
+    @DeleteMapping("recipes/{recipeId}")
+    public ResponseEntity<Object> DeleteRecipe(@PathVariable("recipeId") Long ID){
+
+        boolean result = _recipeApiService.DeleteRecipe(0L, ID);
 
         return this.GenerateNoContentResponse(result);
     }

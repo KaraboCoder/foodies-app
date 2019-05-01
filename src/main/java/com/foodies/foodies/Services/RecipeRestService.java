@@ -5,7 +5,7 @@ import com.foodies.foodies.Entities.RecipeDao;
 import com.foodies.foodies.Repositories.IngredientDaoRepository;
 import com.foodies.foodies.Repositories.InstructionDaoRepository;
 import com.foodies.foodies.Repositories.RecipeCategoryDaoRepository;
-import com.foodies.foodies.Repositories.RecipeReposirtory;
+import com.foodies.foodies.Repositories.RecipeRepository;
 import com.foodies.foodies.Services.contracts.IRecipeService;
 import com.foodies.foodies.ViewModels.RecipeViewModel;
 import org.slf4j.Logger;
@@ -15,19 +15,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RecipeRestService implements IRecipeService {
 
-    private RecipeReposirtory _recipeRepo;
+    private RecipeRepository _recipeRepo;
     private RecipeCategoryDaoRepository _categoriesRepo;
     private IngredientDaoRepository _ingredientsRepo;
     private InstructionDaoRepository _instructRepo;
     private Logger _logger = LoggerFactory.getLogger(RecipeRestService.class);
 
     @Autowired
-    public RecipeRestService(RecipeReposirtory _recipeRepo,
+    public RecipeRestService(RecipeRepository _recipeRepo,
                              RecipeCategoryDaoRepository _categoriesRepo,
                              InstructionDaoRepository instr,
                              IngredientDaoRepository _ingredientsRepo) {
@@ -69,8 +68,25 @@ public class RecipeRestService implements IRecipeService {
     }
 
     @Override
-    public Optional<RecipeViewModel> FindRecipeByID(Long ID) {
-        return Optional.empty();
+    public RecipeViewModel FindRecipeByID(Long ID) {
+        var recipeDao = _recipeRepo.findById(ID).orElse(null);
+        if(recipeDao == null) return null;
+
+        RecipeViewModel recipe = new RecipeViewModel(){
+            {
+                id = recipeDao.getId();
+                title = recipeDao.getTitle();
+                description = recipeDao.getDescription();
+                display_pic_url = recipeDao.getDisplay_pic_url();
+                time_to_prepare = recipeDao.getTime_to_prepare();
+                difficulty_level = recipeDao.getDifficulty_level();
+                category = recipeDao.getCategory();
+                instructions = recipeDao.getInstructions();
+                ingredients = recipeDao.getIngredients();
+            }
+        };
+
+        return recipe;
     }
 
     @Override
@@ -104,11 +120,40 @@ public class RecipeRestService implements IRecipeService {
 
     @Override
     public boolean UpdateRecipe(Long ID, RecipeViewModel updated) {
-        return false;
+
+        if( !_recipeRepo.existsById(ID)) return  false;
+
+        try{
+            var recipeToUpdate = this._recipeRepo.findById(ID).orElse(null);
+            recipeToUpdate.setTitle(updated.title);
+            recipeToUpdate.setDescription(updated.description);
+            recipeToUpdate.setDisplay_pic_url(updated.display_pic_url);
+            recipeToUpdate.setDifficulty_level(updated.difficulty_level);
+            recipeToUpdate.setTime_to_prepare(updated.time_to_prepare);
+            recipeToUpdate.setIngredients(updated.ingredients);
+            recipeToUpdate.setInstructions(updated.instructions);
+
+
+            _recipeRepo.save(recipeToUpdate);
+            return  true;
+
+        }catch (Exception e){
+            // LOG Error message
+            _logger.error("Failed to update asset with Id: " + ID + ". Error details: " + e.getMessage());
+            return  false;
+        }
     }
+
 
     @Override
     public boolean DeleteRecipe(Long userId, Long ID) {
-        return false;
+
+        try {
+            _recipeRepo.deleteById(ID);
+            return true;
+        } catch (Exception e) {
+            _logger.error("Failed to delete recipe with ID: " + ID + ". Error details: " + e.getMessage());
+            return false;
+        }
     }
 }
