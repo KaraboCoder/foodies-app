@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "recipeingredient")
+@Table(name = "recipe_ingredient")
 public class RecipeIngredient implements Serializable {
 
     @Id
@@ -40,7 +40,7 @@ public class RecipeIngredient implements Serializable {
 
     protected RecipeIngredient() {}
 
-    private RecipeIngredient(int quantity) {
+    RecipeIngredient(int quantity) {
         this.quantity = quantity;
     }
 }

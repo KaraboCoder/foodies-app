@@ -38,7 +38,7 @@ public class Users implements Serializable {
 
     protected Users() {}
 
-    public Users(String firstName, String lastName, String email, String password) {
+    Users(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

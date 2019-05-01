@@ -25,12 +25,12 @@ public class Ingredients implements Serializable {
     private String ingredientName;
 
     @ManyToOne(optional = true)
-    @JoinColumn(name = "categoryId", nullable = false)
+    @JoinColumn(name = "categoryId")
     private Categories category;
 
     protected Ingredients() {}
 
-    public Ingredients(String ingredientName) {
+    Ingredients(String ingredientName) {
         this.ingredientName = ingredientName;
     }
 

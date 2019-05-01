@@ -27,7 +27,7 @@ public class Categories implements Serializable {
 
     protected Categories() {}
 
-    private Categories(String categoryName) {
+    Categories(String categoryName) {
         this.categoryName = categoryName;
     }
 }

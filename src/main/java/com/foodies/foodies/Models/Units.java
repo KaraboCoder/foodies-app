@@ -26,7 +26,7 @@ public class Units implements Serializable {
 
     protected Units() {}
 
-    private Units(String unit) {
+    Units(String unit) {
         this.unit = unit;
     }
 }

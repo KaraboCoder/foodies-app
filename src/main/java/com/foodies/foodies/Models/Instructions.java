@@ -31,7 +31,7 @@ public class Instructions implements Serializable {
 
     protected Instructions() {}
 
-    private Instructions(String CookingInstruction) {
+    Instructions(String CookingInstruction) {
         this.CookingInstruction = CookingInstruction;
     }
 }

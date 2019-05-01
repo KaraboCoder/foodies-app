@@ -30,7 +30,7 @@ public class Recipes implements Serializable {
     //#region constructors
     public Recipes() {}
 
-    public Recipes(String recipeName, int preparationTime) {
+    Recipes(String recipeName, int preparationTime) {
         this.recipeName = recipeName;
         this.preparationTime = preparationTime;
     }
