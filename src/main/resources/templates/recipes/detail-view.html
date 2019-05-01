@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Foodies | Recipe details</title>
+    <link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
 </head>
-<body>
+<body class="singlePageBook">
 
 <div layout:fragment="content" class="main-content-wrapper my-5">
-    <h1>Recipe details<small th:text="| - ${recipe.recipeName}|"></small></h1>
 
 
-    <article class="container">
+
+    <article class="container editPageLayout">
+        <h1>Recipe details<small th:text="| - ${recipe.recipeName}|"></small></h1>
         <form th:action="@{ /recipes/update/{id}(id=${recipe.id}) }" th:object="${recipe}" method="post">
 
             <div class="form-group">
@@ -28,8 +30,8 @@
             </div>
 
             <aside class="row">
-            <a th:href="@{~/recipes/browse}" class="btn btn-primary w-40">Back</a>
-            <button type="submit" class="btn btn-primary w-40">Save changes</button>
+            <a th:href="@{~/recipes/browse}" class="btn btn-primary w-40" id="backButton">Back</a>
+            <button type="submit" class="btn btn-primary w-40" id="saveChangesButton">Save changes</button>
             </aside>
         </form>
     </article>

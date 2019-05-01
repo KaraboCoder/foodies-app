@@ -1,0 +1,118 @@
+.singlePageBook {
+    background-image: url('../img/singlepage.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.openBookClean {
+    background-image: url('../img/openbookclean.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.homePageBackground {
+    background-image: url('../img/notebook_pencil_recipe_seasoning_board.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.viewRecipeBackground {
+    background-image: url('../img/openBookClean2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 18%;
+}
+.text-center {
+    opacity: 0.8;
+}
+
+.fields {
+    position: relative;
+    width: 21%;
+    left: 37%;
+}
+
+.bg-light {
+    background-color: aliceblue !important;
+    opacity: 0.85;
+}
+
+.tableStyling {
+    width: 66%;
+    position: relative;
+    left: 14%;
+    margin-bottom: 1rem;
+    background-color: aliceblue;
+    opacity: 0.9;
+}
+
+.createButton {
+    position: relative;
+    left: 47%;
+}
+
+.editPageLayout {
+    color: black;
+    position: relative;
+    width: 27%;
+    left: -3%;
+}
+
+#backButton {
+    position: relative;
+    left: 3%;
+}
+
+#saveChangesButton {
+    position: relative;
+    left: 61%;
+}
+
+#recipeTitle {
+    grid-area: A;
+    font-size: 32px;
+
+    /*font-size: 32px;*/
+    /*position: relative;*/
+    /*left: 55%;*/
+}
+
+
+#ingredients {
+    grid-area: B;
+    /*position: relative;*/
+    /*font-size: 18px;*/
+    /*left: -9%;*/
+    /*text-align: center;*/
+}
+
+#instructions {
+    grid-area: C;
+    font-size: 18px;
+    /*position: absolute;*/
+    /*left: 64%;*/
+    /*top: 31%;*/
+    /*border: 2px solid black;*/
+    /*width: 22%;*/
+    /*height: 100%;*/
+    /*font-size: 18px;*/
+    /*text-align: center;*/
+}
+
+#recipe-grid {
+    display: grid;
+    grid-template-areas: 'A A A'
+                         'B . C'
+                         'B . C';
+    margin-left: 27%;
+    margin-right: 11%;
+}
+
+#recipeDetails {
+     min-height: 100vh;
+}
+
+
