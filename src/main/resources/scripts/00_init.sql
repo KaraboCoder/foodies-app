@@ -1,1 +1,1 @@
-create database foodiesapp;create database foodiesapp;
+create database foodiesapp;

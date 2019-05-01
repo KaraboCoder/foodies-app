@@ -7,18 +7,21 @@ import lombok.NoArgsConstructor;
 
 import lombok.Data;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Data
 @Entity
-public class Instructions {
+@Table(name = "instructions")
+public class Instructions implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull(message = "Cooking instruction is required.")
+    @NotBlank(message = "Cooking instruction is required.")
     private String CookingInstruction;
 
     @ManyToOne(optional = false)
@@ -28,7 +31,7 @@ public class Instructions {
 
     protected Instructions() {}
 
-    private Instructions(String CookingInstruction) {
+    Instructions(String CookingInstruction) {
         this.CookingInstruction = CookingInstruction;
     }
 }
