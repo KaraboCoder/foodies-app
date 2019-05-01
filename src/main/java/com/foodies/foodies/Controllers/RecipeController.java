@@ -23,7 +23,7 @@ import java.util.List;
 *    useful recipe.
 * */
 
-@RestController
+@Controller
 public class RecipeController {
     private IRecipeService _recipeService;
 
