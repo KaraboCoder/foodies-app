@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{fragments/_layout}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
+</head>
+<body class="viewRecipeBackground">
+
+<div layout:fragment="content" class="main-content-wrapper my-5" id="recipe-grid">
+    <label id="recipeTitle"><b>Recipe Title</b></label>
+
+                    <div id="ingredients">
+                        <label><i><b>Ingredients:</b></i></label>
+                        <br>
+                        <label>Here are the ingredients</label>
+                    </div>
+
+                    <div id="instructions">
+                        <label><i><b>Instructions</b></i></label>
+                        <br>
+                        <label>
+                            Here are the Instructions
+                        </label>
+                    </div>
+
+
+
+<!--    <table class="table table-striped tableStyling">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <td>Select Country:</td>-->
+<!--            <td>-->
+<!--                <select>-->
+<!--                    <option value=""> &#45;&#45; </option>-->
+<!--                    <option th:each="country : ${Lister}"-->
+<!--                            th:value="1"-->
+<!--                            th:utext="${country}"/>-->
+<!--                </select>-->
+
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <th scope="col">#</th>-->
+<!--            <th scope="col">Name</th>-->
+<!--            <th scope="col">Time to prepare</th>-->
+<!--            <th scope="col">Actions</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="recipe, status: ${recipeList}">-->
+<!--            <th scope="row" th:text="${status.count}"></th>-->
+<!--            <td th:text="${recipe.recipeName}"></td>-->
+<!--            <td th:text="|${recipe.preparationTime} mins|">Otto</td>-->
+<!--            <td>-->
+<!--                <a th:href="@{ ~/recipes/{recipeId}(recipeId=${recipe.id}) }"><span class="badge badge-secondary">Edit</span></a>-->
+<!--                &lt;!&ndash;TODO: If current recipe belongs to logged in user&ndash;&gt;-->
+<!--                <a th:href="@{ ~/recipes/delete/{recipeId}(recipeId=${recipe.id}) }"><span class="badge badge-danger">Delete</span></a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+<!--    <hr>-->
+<!--    <button class="btn btn-primary createButton">-->
+<!--        <a class="text-white" th:href="@{~/recipes/create}">Create new</a>-->
+<!--    </button>-->
+</div>
+
+</body>
+</html>

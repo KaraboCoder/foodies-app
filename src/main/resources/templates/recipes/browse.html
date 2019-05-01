@@ -10,18 +10,18 @@
 <div layout:fragment="content" class="main-content-wrapper my-5">
     <table class="table table-striped tableStyling">
         <thead>
-        <tr>
-            <td>Select Country:</td>
-            <td>
-                <select>
-                    <option value=""> -- </option>
-                    <option th:each="country : ${Lister}"
-                            th:value="1"
-                            th:utext="${country}"/>
-                </select>
+<!--        <tr>-->
+<!--            <td>Select Country:</td>-->
+<!--            <td>-->
+<!--                <select>-->
+<!--                    <option value=""> &#45;&#45; </option>-->
+<!--                    <option th:each="country : ${Lister}"-->
+<!--                            th:value="1"-->
+<!--                            th:utext="${country}"/>-->
+<!--                </select>-->
 
-            </td>
-        </tr>
+<!--            </td>-->
+<!--        </tr>-->
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
@@ -38,6 +38,7 @@
                 <a th:href="@{ ~/recipes/{recipeId}(recipeId=${recipe.id}) }"><span class="badge badge-secondary">Edit</span></a>
                 <!--TODO: If current recipe belongs to logged in user-->
                 <a th:href="@{ ~/recipes/delete/{recipeId}(recipeId=${recipe.id}) }"><span class="badge badge-danger">Delete</span></a>
+                <a th:href="@{ ~/recipes/view/{recipeId} (recipeId=${recipe.id})}"> <span class="badge badge-danger">View Recipe</span></a>
             </td>
         </tr>
         </tbody>

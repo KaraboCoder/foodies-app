@@ -23,7 +23,7 @@ import java.util.List;
 *    useful recipe.
 * */
 
-@RestController
+@Controller
 public class RecipeController {
     private IRecipeService _recipeService;
 
@@ -83,5 +83,18 @@ public class RecipeController {
         model.addAttribute("recipe", recipe);
 
         return "recipes/action-confirm";
+    }
+
+    @GetMapping("recipes/view/{recipeId}")
+    public String ViewRecipe(@PathVariable("recipeId") Long ID, Model model){
+        System.out.println("I got called");
+//        Recipes recipe = _recipeService.FindRecipeByID(ID).orElse(null);
+//        if(recipe == null) return "error";
+//
+//        boolean result = _recipeService.DeleteRecipe(0L, ID);
+//        model.addAttribute("isDeleted", result);
+//        model.addAttribute("recipe", recipe);
+
+        return "recipes/view-recipe";
     }
 }
