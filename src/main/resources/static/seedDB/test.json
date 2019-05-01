@@ -1,0 +1,23 @@
+{
+  "recipe":
+  {
+    "title": "Chinese Lamb steak",
+    "instructions": "1. Preheat oven",
+    "recipeName": "",
+    "preparationTime": ""
+  },
+
+  "ingredients": [
+   {
+      "shopping_item":{
+        "name": "Carrots",
+        "estimated_price": 23.34
+      },
+      "unit_of_measurement": "ml",
+      "quantity": "5"
+    }
+  ],
+
+  "category": {  "name": "Chinese", "description": "All things chinese"}
+
+}
