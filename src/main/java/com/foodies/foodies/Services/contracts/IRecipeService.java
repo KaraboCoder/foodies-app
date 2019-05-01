@@ -1,15 +1,16 @@
 package com.foodies.foodies.Services.contracts;
 
-import com.foodies.foodies.Models.Recipes;
+import com.foodies.foodies.Entities.RecipeDao;
+import com.foodies.foodies.ViewModels.RecipeViewModel;
 
 import java.util.Optional;
 
 public interface IRecipeService {
-    Iterable<Recipes> FetchAllRecipes();
-    Iterable<Recipes> FetchUsersRecipes(Long UserId);
-    Optional<Recipes> FindRecipeByID(Long ID);
+    Iterable<RecipeViewModel> FetchAllRecipes();
+    Iterable<RecipeViewModel> FetchUsersRecipes(Long UserId);
+    Optional<RecipeViewModel> FindRecipeByID(Long ID);
 
-    boolean CreateRecipe(Recipes recipe);
-    boolean UpdateRecipe(Long ID, Recipes updated);
+    boolean CreateRecipe(RecipeViewModel recipe);
+    boolean UpdateRecipe(Long ID, RecipeViewModel updated);
     boolean DeleteRecipe(Long userId, Long ID);
 }

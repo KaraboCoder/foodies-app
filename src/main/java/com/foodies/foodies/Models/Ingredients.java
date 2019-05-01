@@ -12,9 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-@Data
-@Entity
-@Table(name = "ingredients")
+
 public class Ingredients implements Serializable {
 
     @Id

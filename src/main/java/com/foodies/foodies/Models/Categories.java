@@ -13,9 +13,7 @@ import javax.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 
-@Data
-@Entity
-@Table(name = "categories")
+
 public class Categories implements Serializable {
 
     @Id

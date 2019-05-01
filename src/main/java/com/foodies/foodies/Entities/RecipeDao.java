@@ -11,6 +11,7 @@ public class RecipeDao {
     @GeneratedValue( strategy = GenerationType.AUTO )
     private long id;
     @NotNull
+    @Column(unique=true)
     private String title;
 
     private Long owner = 0L;
@@ -24,11 +25,11 @@ public class RecipeDao {
     private RecipeCategoryDao category = new RecipeCategoryDao();
 
     @NotNull
-    @ManyToOne
+    @OneToMany
     private List<InstructionDao> instructions = new ArrayList<>();
 
     @NotNull
-    @ManyToMany
+    @OneToMany
     private List<IngredientDao> ingredients = new ArrayList<>();
 
     public long getId() {
