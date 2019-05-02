@@ -23,7 +23,8 @@ import java.util.List;
 class LoadDatabase {
 
     @Bean
-    CommandLineRunner initDatabase(RecipeCategoryDaoRepository  _categoriesRepo, IngredientDaoRepository _ingredientsRepo) {
+    CommandLineRunner initDatabase(RecipeCategoryDaoRepository  _categoriesRepo,
+                                   CommonIngredientRepository _ingredientsRepo) {
         return args -> {
 
             out.println("Preloading Categories");
@@ -59,36 +60,30 @@ class LoadDatabase {
                 }
             }
 
-//            out.println("Preloading Ingredients");
-//
-//            try {
-//                Categories meatCategory = _categoriesRepo.save(new Categories("Ingredient: Meat"));
-//                Categories produceCategory = _categoriesRepo.save(new Categories("Ingredient: Produce"));
-//                Categories bakingCategory = _categoriesRepo.save(new Categories("Ingredient: Dry / Baking"));
-//                Categories dairyCategory = _categoriesRepo.save(new Categories("Ingredient: Dairy"));
-//
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Beef", meatCategory)));
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Poultry", meatCategory)));
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Pork", meatCategory)));
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Seafood", meatCategory)));
-//
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Apple", produceCategory)));
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Banana", produceCategory)));
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Potato", produceCategory)));
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Spinach", produceCategory)));
-//
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Flour", bakingCategory)));
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Icing Sugar", bakingCategory)));
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Sugar", bakingCategory)));
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Pasta", bakingCategory)));
-//
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Milk", dairyCategory)));
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Butter", dairyCategory)));
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Eggs", dairyCategory)));
-//                out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Yogurt", dairyCategory)));
-//            }catch (DataIntegrityViolationException e){
-//                System.out.println("Category already exists");
-//            }
+
+            try {
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Beef")));
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Poultry")));
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Pork")));
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Seafood")));
+
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Apple") ));
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Banana")));
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Potato")));
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Spinach")));
+
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Flour")));
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Icing Sugar")));
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Sugar")));
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Pasta")));
+
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Milk")));
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Butter")));
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Eggs")));
+                out.println("Preloading " + _ingredientsRepo.save(new CommonIngredient("Yogurt")));
+            }catch (DataIntegrityViolationException e){
+                System.out.println("Category already exists");
+            }
         };
     }
 //

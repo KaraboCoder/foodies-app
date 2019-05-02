@@ -74,10 +74,9 @@
                 <div class="row">
                     <div class="col-3 form-group">
                         <select  class="form-control" data-placeholder="Select Ingredient" id="Ingredient" name="Ingredients">
-                            <option value=""></option>
                             <option th:each="ingredient : ${Ingredients}"
-                                    th:value="${ingredient}"
-                                    th:utext="${ingredient}"/>
+                                    th:value="${ingredient.ingredientName}"
+                                    th:utext="${ingredient.ingredientName}"/>
                         </select>
                     </div>
                     <div class="col-3">

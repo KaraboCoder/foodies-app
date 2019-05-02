@@ -1,7 +1,11 @@
 package com.foodies.foodies.Controllers;
 
+import com.foodies.foodies.Entities.IngredientDao;
 import com.foodies.foodies.Entities.RecipeCategoryDao;
+import com.foodies.foodies.Models.CommonIngredient;
 import com.foodies.foodies.Models.Units;
+import com.foodies.foodies.Repositories.CommonIngredientRepository;
+import com.foodies.foodies.Repositories.IngredientDaoRepository;
 import com.foodies.foodies.Repositories.RecipeCategoryDaoRepository;
 import com.foodies.foodies.Repositories.UnitsRepository;
 import com.foodies.foodies.Services.contracts.IRecipeService;
@@ -30,14 +34,19 @@ public class RecipeController {
     private IRecipeService _recipeService;
     private UnitsRepository _unitsRepo;
     private RecipeCategoryDaoRepository _categoryRepo;
+    private CommonIngredientRepository _ingredientRepo;
 
     public  RecipeController(){}
 
     @Autowired
-    public RecipeController(IRecipeService recipeService, UnitsRepository unitsRepo, RecipeCategoryDaoRepository categoryRepo) {
+    public RecipeController(IRecipeService recipeService,
+                            CommonIngredientRepository ingredientRepo,
+                            UnitsRepository unitsRepo,
+                            RecipeCategoryDaoRepository categoryRepo) {
         this._recipeService = recipeService;
         this._unitsRepo = unitsRepo;
         this._categoryRepo = categoryRepo;
+        this._ingredientRepo = ingredientRepo;
     }
 
 
@@ -66,15 +75,11 @@ public class RecipeController {
     @GetMapping("/recipes/create")
     public String ShowRecipeCreateForm(Model model) {
 
-        ArrayList<String> Ingredients = new ArrayList<>();
+        ArrayList<CommonIngredient> Ingredients = new ArrayList<>();
         ArrayList<Units> Units = new ArrayList<>();
         ArrayList<RecipeCategoryDao> Categories = new ArrayList<>();
 
-        Ingredients.add("Eggs");
-        Ingredients.add("Beef");
-        Ingredients.add("Chicken");
-        Ingredients.add("Carrots");
-
+        _ingredientRepo.findAll().forEach( item -> Ingredients.add(item));
         _categoryRepo.findAll().forEach(item -> Categories.add(item));
         _unitsRepo.findAll().forEach( item -> Units.add( item ));
 
