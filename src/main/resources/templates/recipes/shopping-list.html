@@ -2,7 +2,7 @@
 <html lang="en" layout:decorate="~{fragments/_layout}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>ShoppingList</title>
     <link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
 </head>
 <body class="shoppingListBackground">
@@ -13,7 +13,9 @@
     <div id="items">
         <label><i><b>Ingredients:</b></i></label>
         <br>
-        <label>Here are the ingredients to buy</label>
+        <ul  th:each="shoppingItem, status: ${shoppingListItems}">
+            <label th:text="|${shoppingItem.ingredientName} ${shoppingItem.quantity} ${shoppingItem.unit}|"></label>
+        </ul>
     </div>
 </div>
 

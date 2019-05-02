@@ -1,5 +1,5 @@
 .singlePageBook {
-    background-image: url('../img/createRecipeBook.jpg');
+    background-image: url('../img/singlepage.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -105,13 +105,13 @@
 }
 
 #instructions {
-    grid-area: C;
     font-size: 18px;
     margin: auto;
+    text-align: center;
 
-    /*position: absolute;*/
-    /*left: 64%;*/
-    /*top: 31%;*/
+    position: absolute;
+    left: 64%;
+    top: 31%;
     /*border: 2px solid black;*/
     /*width: 22%;*/
     /*height: 100%;*/
@@ -119,13 +119,23 @@
     /*text-align: center;*/
 }
 
+#Description {
+    grid-area: D;
+    font-size: 18px;
+    font-weight: bold;
+    text-wrap: normal;
+}
+
 #recipe-grid {
     display: grid;
     grid-template-areas: 'A A A'
-                         'B C C'
-                         'B C C';
+                         'D . .'
+                        'B . .';
     margin-left: 27%;
     margin-right: 11%;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding-top: 3%;
 }
 
 #recipeDetails {
@@ -157,6 +167,7 @@
 }
 #items {
     font-size: 18px;
+    font-weight: bold;
 }
 
 #Category-Label {
