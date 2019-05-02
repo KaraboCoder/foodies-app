@@ -56,6 +56,16 @@
     opacity: 0.9;
 }
 
+.ingredientsTable {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: aliceblue;
+    opacity: 0.9;
+}
+
+#Quantity {
+    width: 100%;
+}
 .createButton {
     position: relative;
     left: 47%;
@@ -145,6 +155,23 @@
     font-size: 18px;
 }
 
+#Category-Label {
+    text-align: center;
+}
+#Category {
+    text-align: center;
+}
+#Instruction {
+    width: 100%;
+}
+
+.Instructions-cell{
+    width: 42% !important;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 .btn-styling {
     color: dimgray;
     border: 1px solid dimgray;
@@ -165,3 +192,18 @@
     transition: all 0.4s ease 0s;
 }
 
+
+.Instructions-cell-delete-button{
+    display: inline-block;
+    width: 25%;
+    text-align: right;
+}
+
+.table-wrapper{
+    width: 100%;
+    overflow: hidden;
+}
+
+.user-dropdown{
+    right: 360%;
+}

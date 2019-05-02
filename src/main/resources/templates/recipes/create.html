@@ -16,7 +16,7 @@
             <form th:action="@{/recipes/save}" th:object="${recipe}" method="post">
 
                 <div class="form-group">
-                    <label for="title">Title</label>
+                    <label for="title"><b>Title</b></label>
                     <input type="text"
                            th:field="*{recipeName}"
                            class="form-control"
@@ -24,25 +24,83 @@
                            placeholder="Name of your recipe" required/>
                 </div>
                 <div class="form-group">
-                    <label for="time-span">Time to prepare</label>
+                    <label for="time-span"><b>Time to prepare</b></label>
                     <input type="number" th:field="*{preparationTime}" class="form-control" id="time-span"
                         placeholder="Time to prepare in minutes"/>
                 </div>
 
-<!--                <form action="http://httpbin.org/post" method="post">-->
-                    <select  data-placeholder="Select Ingredient" multiple class="chosen-select multiSelection" name="Ingredients">
-                        <option value=""></option>
-                        <option th:each="ingredient : ${Ingredients}"
-                                th:value="1"
-                                th:utext="${ingredient}"/>
-                    </select>
-<!--                </form>-->
-                <!--                <select>-->
-<!--                                    <option value=""> &#45;&#45; </option>-->
-<!--                                    <option th:each="country : ${Lister}"-->
-<!--                                            th:value="1"-->
-<!--                                            th:utext="${country}"/>-->
-                <!--                </select>-->
+                <label id="Category-Label"><b>Meal Category</b></label>
+                <select  data-placeholder="Select Category" id="Category" name="Categories">
+                    <option value=""></option>
+                    <option th:each="category : ${Categories}"
+                            th:value="${category}"
+                            th:utext="${category}"/>
+                </select>
+                <br>
+                <hr>
+                <table class="table table-striped ingredientsTable" id="Ingredients-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Ingredient</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Units</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-3">
+                        <select  data-placeholder="Select Ingredient" id="Ingredient" name="Ingredients">
+                            <option value=""></option>
+                            <option th:each="ingredient : ${Ingredients}"
+                                    th:value="${ingredient}"
+                                    th:utext="${ingredient}"/>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <input placeholder="Quantity" type="number" id="Quantity">
+                    </div>
+                    <div class="col-3">
+                        <select  data-placeholder="Select Ingredient" name="Unit" id="Unit">
+                            <option value=""></option>
+                            <option th:each="unit : ${Units}"
+                                    th:value="${unit}"
+                                    th:utext="${unit}"/>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" id="add-ingredient-btn" class="btn btn-primary">Add Ingredient</button>
+                    </div>
+                </div>
+
+                <br>
+                <div class="table-wrapper">
+                    <table class="table table-striped ingredientsTable" id="Instructions-table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Instructions</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="col-9">
+                            <input placeholder="Enter Instruction" id="Instruction">
+                    </div>
+                    <div class="col-3">
+                        <button type="button" id="add-instruction-btn" class="btn btn-primary">Add Instruction</button>
+                    </div>
+                </div>
 
 
                 <button type="submit" class="btn btn-primary">Save recipe</button>
