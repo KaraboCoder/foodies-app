@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +29,7 @@ public class RecipeController {
     public RecipeController(IRecipeService _recipeService) {
         this._recipeService = _recipeService;
     }
+
 
     @GetMapping("recipes/browse")
     public String GetAllRecipes(Model model){
@@ -84,7 +84,7 @@ public class RecipeController {
     }
 
     @PostMapping(value="/recipes/save", params={"addRow"})
-    public String addRow(@Valid Recipes recipe, BindingResult result, Model model) {
+    public String addRow(@Valid RecipeViewModel recipe, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "redirect:/recipes/create";
         }
@@ -94,15 +94,6 @@ public class RecipeController {
         return isCreated? "redirect:/recipes/browse" :  "redirect:/recipes/create";
     }
 
-//    @RequestMapping(value="/seedstartermng", params={"save"})
-//    public String saveSeedstarter(final SeedStarter seedStarter, final BindingResult bindingResult, final ModelMap model) {
-//        if (bindingResult.hasErrors()) {
-//            return "seedstartermng";
-//        }
-//        this.seedStarterService.add(seedStarter);
-//        model.clear();
-//        return "redirect:/seedstartermng";
-//    }
 
     @GetMapping("/recipes/shopping")
     public String ShowShoppingList(Model model) {
@@ -120,7 +111,7 @@ public class RecipeController {
     @GetMapping("recipes/delete/{recipeId}")
     public String DeleteRecipe(@PathVariable("recipeId") Long ID, Model model){
 
-        Recipes recipe = _recipeService.FindRecipeByID(ID).orElse(null);
+        RecipeViewModel recipe = _recipeService.FindRecipeByID(ID);
         if(recipe == null) return "error";
         boolean result = _recipeService.DeleteRecipe(0L, ID);
         model.addAttribute("isDeleted", result);
