@@ -56,13 +56,14 @@
 
 .ingredientsTable {
     width: 100%;
-    position: relative;
-    left: 14%;
     margin-bottom: 1rem;
     background-color: aliceblue;
     opacity: 0.9;
 }
 
+#Quantity {
+    width: 100%;
+}
 .createButton {
     position: relative;
     left: 47%;

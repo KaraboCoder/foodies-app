@@ -55,11 +55,17 @@ public class RecipeController {
     public String ShowRecipeCreateForm(Model model) {
         model.addAttribute("recipe", new Recipes());
         ArrayList<String> Ingredients = new ArrayList<>();
+        ArrayList<String> Units = new ArrayList<>();
         Ingredients.add("Eggs");
         Ingredients.add("Beef");
         Ingredients.add("Chicken");
         Ingredients.add("Carrots");
+
+        Units.add("KG");
+        Units.add("Litre");
+        Units.add("Grams");
         model.addAttribute(("Ingredients"), Ingredients);
+        model.addAttribute(("Units"), Units);
         return "recipes/create";
     }
 
