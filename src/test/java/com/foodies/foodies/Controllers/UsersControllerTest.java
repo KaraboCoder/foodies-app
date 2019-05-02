@@ -16,29 +16,25 @@ import org.junit.Before;
 import org.junit.Assert;
 
 import org.springframework.ui.Model;
-import com.foodies.foodies.Services.UsersService;
-import com.foodies.foodies.Repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.foodies.foodies.Models.Users;
-import com.foodies.foodies.Repositories.UsersRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UsersControllerTest{
-    @InjectMocks
-    private UsersController usersController=new UsersController();
-    @Mock
-    private Model model;
-
-    @Mock
-    private UsersService usersService;
-
-    @Test
-    public void creatUser_shouldReturnUser(){
-        Users user= mock(Users.class);
-        when(usersService.createUser(user)).thenReturn(user);
-        Users newUser = usersService.createUser(user);
-        String returnValue = usersController.createUser(user,model);
-        verify(model, times(1)).addAttribute("user", newUser );
-        Assert.assertEquals("user", returnValue);
-    }
+//    @InjectMocks
+//    private UsersController usersController=new UsersController();
+//    @Mock
+//    private Model model;
+//
+//    @Mock
+//    private UsersService usersService;
+//
+//    @Test
+//    public void creatUser_shouldReturnUser(){
+//        Users user= mock(Users.class);
+//        when(usersService.createUser(user)).thenReturn(user);
+//        Users newUser = usersService.createUser(user);
+//        String returnValue = usersController.createUser(user,model);
+//        verify(model, times(1)).addAttribute("user", newUser );
+//        Assert.assertEquals("user", returnValue);
+//    }
 }

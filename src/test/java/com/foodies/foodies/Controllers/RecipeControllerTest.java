@@ -19,8 +19,6 @@ import org.junit.Assert;
 
 //Other
 import org.springframework.ui.Model;
-import com.foodies.foodies.Services.UsersService;
-import com.foodies.foodies.Repositories.UsersRepository;
 import com.foodies.foodies.Models.Users;
 import com.foodies.foodies.Controllers.RecipeController;
 import com.foodies.foodies.Models.Recipes;

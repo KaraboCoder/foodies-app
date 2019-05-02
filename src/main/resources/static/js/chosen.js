@@ -7,7 +7,10 @@ $(document).ready(function () {
         var quantity = $("#Quantity").val();
         var unit = $("#Unit").val();
 
-        if (unit.length == 0 || quantity.length == 0 || ingredient.length == 0) return;
+        if (unit.length == 0 || quantity.length == 0 || ingredient.length == 0) {
+            alert("Fill in all ingredient fields.");
+            return;
+        }
         var table = $("#Ingredients-table tbody");
         console.log(table);
         table.append("<tr id=\"tr-"+counter+"\"><td>"+ingredient+"</td><td>"+quantity+"</td> <td>"+unit+"</td><td><button data-id=\"tr-"+counter+"\"type=\"button\" id=\"remove-ingredient-btn-"+counter+"\" class=\"btn btn-primary\">Delete</button></td></tr>");
@@ -25,7 +28,10 @@ $(document).ready(function () {
     $("#add-instruction-btn").click(function () {
         var instruction = $("#Instruction").val();
 
-        if (instruction.length == 0) return;
+        if (instruction.length == 0) {
+            alert("Instruction cannot be empty");
+            return;
+        }
 
         var table = $("#Instructions-table tbody");
         console.log(table);
