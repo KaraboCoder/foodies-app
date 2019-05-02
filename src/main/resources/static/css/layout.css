@@ -153,3 +153,35 @@
     font-size: 18px;
 }
 
+#Category-Label {
+    text-align: center;
+}
+#Category {
+    text-align: center;
+}
+#Instruction {
+    width: 100%;
+}
+
+.Instructions-cell{
+    width: 42% !important;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.Instructions-cell-delete-button{
+    display: inline-block;
+    width: 25%;
+    text-align: right;
+}
+
+.table-wrapper{
+    width: 100%;
+    overflow: hidden;
+}
+
+.user-dropdown{
+    right: 360%;
+}

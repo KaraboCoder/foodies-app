@@ -59,6 +59,8 @@ public class RecipeController {
         model.addAttribute("recipe", new RecipeViewModel());
         ArrayList<String> Ingredients = new ArrayList<>();
         ArrayList<String> Units = new ArrayList<>();
+        ArrayList<String> Categories = new ArrayList<>();
+
         Ingredients.add("Eggs");
         Ingredients.add("Beef");
         Ingredients.add("Chicken");
@@ -67,8 +69,16 @@ public class RecipeController {
         Units.add("KG");
         Units.add("Litre");
         Units.add("Grams");
+
+        Categories.add("Dessert");
+        Categories.add("Dinner");
+        Categories.add("Breakfast");
+
         model.addAttribute(("Ingredients"), Ingredients);
         model.addAttribute(("Units"), Units);
+        model.addAttribute(("Categories"), Categories);
+
+
         return "recipes/create";
     }
 
