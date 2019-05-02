@@ -1,5 +1,13 @@
 package com.foodies.foodies.Controllers;
 
+import com.foodies.foodies.Entities.IngredientDao;
+import com.foodies.foodies.Entities.RecipeCategoryDao;
+import com.foodies.foodies.Models.CommonIngredient;
+import com.foodies.foodies.Models.Units;
+import com.foodies.foodies.Repositories.CommonIngredientRepository;
+import com.foodies.foodies.Repositories.IngredientDaoRepository;
+import com.foodies.foodies.Repositories.RecipeCategoryDaoRepository;
+import com.foodies.foodies.Repositories.UnitsRepository;
 import com.foodies.foodies.Services.contracts.IRecipeService;
 import com.foodies.foodies.ViewModels.RecipeViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +32,21 @@ import java.util.List;
 @Controller
 public class RecipeController {
     private IRecipeService _recipeService;
+    private UnitsRepository _unitsRepo;
+    private RecipeCategoryDaoRepository _categoryRepo;
+    private CommonIngredientRepository _ingredientRepo;
+
+    public  RecipeController(){}
 
     @Autowired
-    public RecipeController(IRecipeService _recipeService) {
-        this._recipeService = _recipeService;
+    public RecipeController(IRecipeService recipeService,
+                            CommonIngredientRepository ingredientRepo,
+                            UnitsRepository unitsRepo,
+                            RecipeCategoryDaoRepository categoryRepo) {
+        this._recipeService = recipeService;
+        this._unitsRepo = unitsRepo;
+        this._categoryRepo = categoryRepo;
+        this._ingredientRepo = ingredientRepo;
     }
 
 
@@ -56,24 +75,15 @@ public class RecipeController {
     @GetMapping("/recipes/create")
     public String ShowRecipeCreateForm(Model model) {
 
+        ArrayList<CommonIngredient> Ingredients = new ArrayList<>();
+        ArrayList<Units> Units = new ArrayList<>();
+        ArrayList<RecipeCategoryDao> Categories = new ArrayList<>();
+
+        _ingredientRepo.findAll().forEach( item -> Ingredients.add(item));
+        _categoryRepo.findAll().forEach(item -> Categories.add(item));
+        _unitsRepo.findAll().forEach( item -> Units.add( item ));
+
         model.addAttribute("recipe", new RecipeViewModel());
-        ArrayList<String> Ingredients = new ArrayList<>();
-        ArrayList<String> Units = new ArrayList<>();
-        ArrayList<String> Categories = new ArrayList<>();
-
-        Ingredients.add("Eggs");
-        Ingredients.add("Beef");
-        Ingredients.add("Chicken");
-        Ingredients.add("Carrots");
-
-        Units.add("KG");
-        Units.add("Litre");
-        Units.add("Grams");
-
-        Categories.add("Dessert");
-        Categories.add("Dinner");
-        Categories.add("Breakfast");
-
         model.addAttribute(("Ingredients"), Ingredients);
         model.addAttribute(("Units"), Units);
         model.addAttribute(("Categories"), Categories);
