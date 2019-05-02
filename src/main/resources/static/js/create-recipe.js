@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dataRows.map((row, index) => {
             let cells = row.getElementsByTagName('td');
             let instr = {
-                instruction_number: index,
+                instruction_number: index + 1,
                 instruction: cells[0].innerText
             };
             results.push(instr);
@@ -30,12 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const getIngrValuesFromTable = (tableQuerySelector) => {
         const results = [];
         const dataRows = Array.from(document.querySelectorAll(tableQuerySelector));
-        dataRows.map((row, index) => {
+        dataRows.map( (row) => {
             let cells = row.getElementsByTagName('td');
             let ingr = {
-                name: cells[0],
-                unit_of_measurement: cells[1],
-                quantity: cells[2]
+                name: cells[0].innerText,
+                unit_of_measurement: cells[2].innerText,
+                quantity: cells[1].innerText
             }
             results.push(ingr);
         });
@@ -44,15 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const generateRequestbody = () => {
-        alert(`Check if form elem exists: ${document.getElementById("create-recipe-form")}.`);
         const body = {
             title: getFormElementValueByID('title'),
             description: getFormElementValueByID('description'),
             time_to_prepare: getFormElementValueByID('time_to_prepare'),
             difficulty_level: getSelectedValue('difficulty_level'),
-            category: getSelectedValue('category'),
-            instructions: getInstrValuesFromTable("Instructions-table > tbody > tr"),
-            ingredients: getIngrValuesFromTable("Ingredients-table > tbody > tr")
+            category: {
+                name: getSelectedValue('category')
+            },
+            instructions: getInstrValuesFromTable("#Instructions-table > tbody > tr"),
+            ingredients: getIngrValuesFromTable("#Ingredients-table > tbody > tr")
         }
         return body;
     }
@@ -81,10 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
             .addEventListener('click', (e) => {
                 alert(`form value is: ${ JSON.stringify( generateRequestbody(), null, 4 ) }`);
 
-                // postData(generateRequestbody(), 'http://localhost:8080/api/create')
-                //     .then(data => console.log(JSON.stringify(data))) // JSON-string from `response.json()` call
-                //     .catch(error => console.error(error));
-
+                postData(generateRequestbody(), 'http://localhost:8080/api/create')
+                    .then(data => console.log(JSON.stringify(data))) // JSON-string from `response.json()` call
+                    .catch(error => console.error(error));
             });
     }
 

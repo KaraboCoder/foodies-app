@@ -94,6 +94,10 @@ public class RecipeRestService implements IRecipeService {
         try {
             var recipeDao = new RecipeDao();
             recipeDao.setTitle( recipe.title );
+            recipeDao.setDescription(recipe.description);
+            recipeDao.setDifficulty_level(recipe.difficulty_level);
+            recipeDao.setTime_to_prepare(recipe.time_to_prepare);
+
 
             var category = recipe.category;
             _categoriesRepo.save( category );
