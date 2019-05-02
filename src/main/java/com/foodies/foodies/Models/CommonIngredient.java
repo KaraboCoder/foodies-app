@@ -13,7 +13,9 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 
-public class Ingredients implements Serializable {
+@Entity
+@Data
+public class CommonIngredient implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,15 +25,11 @@ public class Ingredients implements Serializable {
     @NotBlank(message = "Ingredient name is required.")
     private String ingredientName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoryId")
-    private Categories category;
 
-    public Ingredients() {}
+    public CommonIngredient() {}
 
-    Ingredients(String ingredientName, Categories category) {
+    public CommonIngredient(String ingredientName) {
         this.ingredientName = ingredientName;
-        this.category = category;
     }
 
 }

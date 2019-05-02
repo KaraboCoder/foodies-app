@@ -53,8 +53,8 @@
                 <label id="Category-Label"><b>Meal Category</b></label>
                 <select  data-placeholder="Select Category" id="category" name="Categories">
                     <option th:each="category : ${Categories}"
-                            th:value="${category}"
-                            th:utext="${category}"/>
+                            th:value="${category.name}"
+                            th:utext="${category.name}"/>
                 </select>
                 <br>
                 <hr>
@@ -74,10 +74,9 @@
                 <div class="row">
                     <div class="col-3 form-group">
                         <select  class="form-control" data-placeholder="Select Ingredient" id="Ingredient" name="Ingredients">
-                            <option value=""></option>
                             <option th:each="ingredient : ${Ingredients}"
-                                    th:value="${ingredient}"
-                                    th:utext="${ingredient}"/>
+                                    th:value="${ingredient.ingredientName}"
+                                    th:utext="${ingredient.ingredientName}"/>
                         </select>
                     </div>
                     <div class="col-3">
@@ -85,10 +84,9 @@
                     </div>
                     <div class="col-3 form-group">
                         <select class="form-control" data-placeholder="Select Ingredient" name="Unit" id="Unit">
-                            <option value=""></option>
-                            <option th:each="unit : ${Units}"
-                                    th:value="${unit}"
-                                    th:utext="${unit}"/>
+                            <option th:each="unitItem : ${Units}"
+                                    th:value="${unitItem.unit}"
+                                    th:utext="${unitItem.unit}"/>
                         </select>
                     </div>
                     <div class="col-3">
