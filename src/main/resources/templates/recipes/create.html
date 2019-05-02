@@ -16,7 +16,7 @@
             <form th:action="@{/recipes/save}" th:object="${recipe}" method="post">
 
                 <div class="form-group">
-                    <label for="title">Title</label>
+                    <label for="title"><b>Title</b></label>
                     <input type="text"
                            th:field="*{recipeName}"
                            class="form-control"
@@ -24,17 +24,27 @@
                            placeholder="Name of your recipe" required/>
                 </div>
                 <div class="form-group">
-                    <label for="time-span">Time to prepare</label>
+                    <label for="time-span"><b>Time to prepare</b></label>
                     <input type="number" th:field="*{preparationTime}" class="form-control" id="time-span"
                         placeholder="Time to prepare in minutes"/>
                 </div>
 
+                <label id="Category-Label"><b>Meal Category</b></label>
+                <select  data-placeholder="Select Category" id="Category" name="Categories">
+                    <option value=""></option>
+                    <option th:each="category : ${Categories}"
+                            th:value="${category}"
+                            th:utext="${category}"/>
+                </select>
+                <br>
+                <hr>
                 <table class="table table-striped ingredientsTable" id="Ingredients-table">
                     <thead>
                     <tr>
                         <th scope="col">Ingredient</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Units</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -67,19 +77,21 @@
                     </div>
                 </div>
 
-
-                <table class="table table-striped ingredientsTable" id="Instructions-table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Instructions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </table>
+                <br>
+                <div class="table-wrapper">
+                    <table class="table table-striped ingredientsTable" id="Instructions-table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Instructions</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="row">
                     <div class="col-9">
