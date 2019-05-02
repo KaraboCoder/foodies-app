@@ -14,7 +14,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "recipe")
+@Table(name = "recipes")
 public class Recipes implements Serializable {
 
     @Id
