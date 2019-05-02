@@ -10,28 +10,31 @@
 
     <section id="recipe-create-form" class="content-container">
         <article>
-            <form th:action="@{/recipes/save}" th:object="${recipe}" method="post">
+            <form  th:object="${recipe}">
 
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text"
-                           th:field="*{recipeName}"
+                           th:field="*{title}"
                            class="form-control"
                            id="title"
                            placeholder="Name of your recipe" required/>
                 </div>
                 <div class="form-group">
                     <label for="time-span">Time to prepare</label>
-                    <input type="number" th:field="*{preparationTime}" class="form-control" id="time-span"
+                    <input type="number" th:field="*{time_to_prepare}" class="form-control" id="time-span"
                         placeholder="Time to prepare in minutes"/>
                 </div>
 
 
-                <button type="submit" class="btn btn-primary">Save recipe</button>
+                <button type="button" id="create-recipe-btn" class="btn btn-primary">Save recipe</button>
             </form>
         </article>
     </section>
+
+    <script src="/js/create-recipe.js"></script>
 </div>
+
 
 </body>
 </html>
