@@ -7,11 +7,9 @@
 </head>
 <body class="singlePageBook">
 
-<div layout:fragment="content" class="main-content-wrapper my-5">
+<div layout:fragment="content" class="smallWrapper">
 
-
-
-    <article class="container editPageLayout">
+    <article>
         <h1>Edit recipe <small th:text="| - ${recipe.title }|"></small></h1>
         <form id="create-recipe-form"  th:object="${recipe}">
 
@@ -84,7 +82,7 @@
                                 th:utext="${ingredient}"/>
                     </select>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <input placeholder="Quantity" type="number" id="Quantity">
                 </div>
                 <div class="col-3 form-group">
@@ -95,7 +93,7 @@
                                 th:utext="${unit}"/>
                     </select>
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                     <button type="button" id="add-ingredient-btn" class="btn btn-styling">Add Ingredient</button>
                 </div>
             </div>
@@ -119,10 +117,10 @@
             </div>
 
             <div class="row">
-                <div class="col-9">
+                <div class="col-8">
                     <input placeholder="Enter Instruction" id="Instruction">
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                     <button type="button" id="add-instruction-btn" class="btn btn-styling">Add Instruction</button>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-.openBookClean, .singlePageBook, .homePageBackground, .shoppingListBackground, .viewRecipeBackground{
+.openBookClean, .singlePageBook, .homePageBackground, .shoppingListBackground, .viewRecipeBackground, .deleteBackground {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -7,35 +7,34 @@
     margin-top: 100px;
 }
 
+.openBookClean, .homePageBackground, .shoppingListBackground, .viewRecipeBackground, .deleteBackground {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - 100px);
+}
+
 .singlePageBook {
     background-image: url('../img/createRecipeBook.jpg');
 }
 
 .openBookClean {
     background-image: url('../img/openbookclean.jpg');
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 100px);
-    justify-content: space-between;
 }
 
 .homePageBackground {
     background-image: url('../img/notebook_pencil_recipe_seasoning_board.jpg');
-    height: calc(100vh - 100px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 .viewRecipeBackground {
     background-image: url('../img/openBookClean2.jpg');
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: calc(100vh - 100px);
 }
 .shoppingListBackground {
     background-image: url('../img/ShoppingList1.jpeg');
+}
+
+.deleteBackground {
+    background-image: url('../img/delete.jpeg');
 }
 
 .opacity {
@@ -140,11 +139,10 @@
 }
 
 .shoppingList {
-    position: absolute;
-    width: 100%;
-    height: 99%;
-    text-align: center;
-    top: 19%;
+    width: 32%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
 }
 
 #ingredientList {
@@ -209,4 +207,14 @@
 
 .user-dropdown{
     right: 360%;
+}
+
+.container-delete {
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #e9ecef;
+    border-radius: .3rem;
+    opacity: 0.94;
+    padding: 12px;
 }
