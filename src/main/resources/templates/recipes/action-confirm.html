@@ -15,7 +15,7 @@
     <article class="action-result" id="äction-successful" th:if="${isDeleted}">
         <header>
             <h1 class="text-success">Successfully deleted recipe
-                <small th:text="| > ${recipe.recipeName}|"></small>
+                <small class="text-danger" th:text="| > ${recipe.title}|"></small>
             </h1>
         </header>
 
@@ -25,7 +25,7 @@
 
     </article>
 
-    <article class="action-result" id="äction-failed" th:if="${isDeleted}==false">
+    <article class="action-result" id="action-failed" th:if="${isDeleted}==false">
         <header>
             <p th:if="${isDeleted}==false" class="text-danger">An unexpected error has occurred. Would you like to try
                 again?

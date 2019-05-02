@@ -125,6 +125,7 @@ public class RecipeController {
         if(recipe == null) return "error";
         boolean result = _recipeService.DeleteRecipe(0L, ID);
         model.addAttribute("isDeleted", result);
+        model.addAttribute("recipe", recipe);
 
         return "recipes/action-confirm";
     }
