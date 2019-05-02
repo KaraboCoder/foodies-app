@@ -38,8 +38,10 @@ import java.util.Optional;
 public class RecipeControllerTest {
     @Mock
     private IRecipeService _recipeService;
+
+
     @InjectMocks
-    private RecipeController recipeController = new RecipeController(_recipeService);
+    private RecipeController recipeController = new RecipeController();
 
     @Mock
     private Model model;

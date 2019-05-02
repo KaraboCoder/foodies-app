@@ -1,5 +1,7 @@
 package com.foodies.foodies.Models;
 
+import com.foodies.foodies.Entities.IngredientDao;
+import com.foodies.foodies.Entities.RecipeCategoryDao;
 import lombok.extern.slf4j.Slf4j;
 
 import static java.lang.System.out;
@@ -20,43 +22,43 @@ import java.util.List;
 @Slf4j
 class LoadDatabase {
 
-//    @Bean
-//    CommandLineRunner initDatabase(CategoriesRepository _categoriesRepo, IngredientsRepository _ingredientsRepo) {
-//        return args -> {
-//
-//            out.println("Preloading Categories");
-//
-//            List<String> loadCategories = new ArrayList<String>();
-//            loadCategories.add("Breakfast");
-//            loadCategories.add("Dessert");
-//            loadCategories.add("Main Dishes: Beef");
-//            loadCategories.add("Main Dishes: Poultry");
-//            loadCategories.add("Main Dishes: Pork");
-//            loadCategories.add("Main Dishes: Seafood");
-//            loadCategories.add("Main Dishes: Vegetarian");
-//            loadCategories.add("Side Dishes: Vegetables");
-//            loadCategories.add("Side Dishes: Other");
-//            loadCategories.add("Appetizer");
-//            loadCategories.add("Soup");
-//            loadCategories.add("Salad");
-//            loadCategories.add("Breads");
-//            loadCategories.add("Rolls");
-//            loadCategories.add("Lunch");
-//            loadCategories.add("Canning / Freezing");
-//            loadCategories.add("Miscellaneous");
-//            loadCategories.add("Ingredient: Meat");
-//            loadCategories.add("Ingredient: Produce");
-//            loadCategories.add("Ingredient: Dry / Baking");
-//            loadCategories.add("Ingredient: Dairy");
-//
-//            for (String addValue: loadCategories){
-//                try {
-//                    out.println("Preloading " + _categoriesRepo.save(new Categories(addValue)));
-//                }catch (DataIntegrityViolationException e){
-//                    System.out.println("Category already exists");
-//                }
-//            }
-//
+    @Bean
+    CommandLineRunner initDatabase(RecipeCategoryDaoRepository  _categoriesRepo, IngredientDaoRepository _ingredientsRepo) {
+        return args -> {
+
+            out.println("Preloading Categories");
+
+            List<String> loadCategories = new ArrayList<String>();
+            loadCategories.add("Breakfast");
+            loadCategories.add("Dessert");
+            loadCategories.add("Main Dishes: Beef");
+            loadCategories.add("Main Dishes: Poultry");
+            loadCategories.add("Main Dishes: Pork");
+            loadCategories.add("Main Dishes: Seafood");
+            loadCategories.add("Main Dishes: Vegetarian");
+            loadCategories.add("Side Dishes: Vegetables");
+            loadCategories.add("Side Dishes: Other");
+            loadCategories.add("Appetizer");
+            loadCategories.add("Soup");
+            loadCategories.add("Salad");
+            loadCategories.add("Breads");
+            loadCategories.add("Rolls");
+            loadCategories.add("Lunch");
+            loadCategories.add("Canning / Freezing");
+            loadCategories.add("Miscellaneous");
+            loadCategories.add("Ingredient: Meat");
+            loadCategories.add("Ingredient: Produce");
+            loadCategories.add("Ingredient: Dry / Baking");
+            loadCategories.add("Ingredient: Dairy");
+
+            for (String addValue: loadCategories){
+                try {
+                    out.println("Insert category: " + _categoriesRepo.save(new RecipeCategoryDao(addValue)));
+                }catch (DataIntegrityViolationException e){
+                    System.out.println("Category already exists");
+                }
+            }
+
 //            out.println("Preloading Ingredients");
 //
 //            try {
@@ -87,32 +89,32 @@ class LoadDatabase {
 //            }catch (DataIntegrityViolationException e){
 //                System.out.println("Category already exists");
 //            }
-//        };
-//    }
+        };
+    }
 //
-//    @Bean
-//    CommandLineRunner initUnits(UnitsRepository _unitsRepo) {
-//        return args -> {
-////            _unitsRepo.deleteAll();
-//
-//            out.println("Preloading Units");
-//            List<String> loadUnits = new ArrayList<String>();
-//            loadUnits.add("Teaspoon(s)");
-//            loadUnits.add("Tablespoon(s)");
-//            loadUnits.add("Cup(s)");
-//            loadUnits.add("mL");
-//            loadUnits.add("L");
-//            loadUnits.add("g");
-//            loadUnits.add("kg");
-//            loadUnits.add("Item Quantity");
-//            for (String addValue: loadUnits){
-//                try {
-//                    out.println("Preloading " + _unitsRepo.save(new Units(addValue)));
-//                }catch (DataIntegrityViolationException e){
-//                    System.out.println("Category already exists");
-//                }
-//            }
-//
-//        };
-//    }
+    @Bean
+    CommandLineRunner initUnits(UnitsRepository _unitsRepo) {
+        return args -> {
+            _unitsRepo.deleteAll();
+
+            out.println("Seeding Units...");
+            List<String> loadUnits = new ArrayList<String>();
+            loadUnits.add("Teaspoon");
+            loadUnits.add("Tablespoon");
+            loadUnits.add("Cup");
+            loadUnits.add("mL");
+            loadUnits.add("L");
+            loadUnits.add("g");
+            loadUnits.add("kg");
+
+            for (String addValue: loadUnits){
+                try {
+                    out.println("Insert " + _unitsRepo.save(new Units(addValue)));
+                }catch (DataIntegrityViolationException e){
+                    System.out.println("Category already exists");
+                }
+            }
+
+        };
+    }
 }
