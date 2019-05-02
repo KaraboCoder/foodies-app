@@ -68,14 +68,14 @@ public class RecipeRestController {
                 public final boolean succeeded = result;
                 public final String message ="Operation completed successfully.";
             };
-            return new ResponseEntity(responseBody, HttpStatus.NO_CONTENT);
+            return new ResponseEntity<Object>(responseBody, HttpStatus.OK);
 
         }else{
             Object responseBody = new Object(){
                 public final boolean succeeded = result;
                 public final String message ="Error: Please correct your schema and try again.";
             };
-            return new ResponseEntity(responseBody, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<Object>(responseBody, HttpStatus.BAD_REQUEST);
         }
 
     }
