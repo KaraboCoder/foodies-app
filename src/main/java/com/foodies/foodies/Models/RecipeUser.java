@@ -20,12 +20,12 @@ public class RecipeUser implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "recipeId", nullable = false)
     @NotNull(message = "Recipe ID is required.")
     private Recipes recipe;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "userId", nullable = false)
     @NotNull(message = "User ID is required.")
     private Users user;
