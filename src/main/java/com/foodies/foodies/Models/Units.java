@@ -21,6 +21,7 @@ public class Units implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(unique = true)
     @NotBlank(message = "Measuring unit is required.")
     private String unit;
 

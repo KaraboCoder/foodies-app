@@ -68,4 +68,22 @@ class LoadDatabase {
             out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Yogurt", dairyCategory)));
         };
     }
+
+    @Bean
+    CommandLineRunner initUnits(UnitsRepository _unitsRepo) {
+        return args -> {
+            _unitsRepo.deleteAll();
+
+            out.println("Preloading Units");
+            out.println("Preloading " + _unitsRepo.save(new Units("Teaspoon(s)")));
+            out.println("Preloading " + _unitsRepo.save(new Units("Tablespoon(s)")));
+            out.println("Preloading " + _unitsRepo.save(new Units("Cup(s)")));
+            out.println("Preloading " + _unitsRepo.save(new Units("mL")));
+            out.println("Preloading " + _unitsRepo.save(new Units("L")));
+            out.println("Preloading " + _unitsRepo.save(new Units("g")));
+            out.println("Preloading " + _unitsRepo.save(new Units("kg")));
+            out.println("Preloading " + _unitsRepo.save(new Units("Item Quantity")));
+
+        };
+    }
 }

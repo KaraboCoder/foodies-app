@@ -40,27 +40,27 @@ public class Recipes implements Serializable {
     //#endregion
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getRecipeName() {
-        return recipeName;
-    }
-
-    public void setRecipeName(String recipeName) {
-        this.recipeName = recipeName;
-    }
-
-    public int getPreparationTime() {
-        return preparationTime;
-    }
-
-    public void setPreparationTime(int preparationTime) {
-        this.preparationTime = preparationTime;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getRecipeName() {
+//        return recipeName;
+//    }
+//
+//    public void setRecipeName(String recipeName) {
+//        this.recipeName = recipeName;
+//    }
+//
+//    public int getPreparationTime() {
+//        return preparationTime;
+//    }
+//
+//    public void setPreparationTime(int preparationTime) {
+//        this.preparationTime = preparationTime;
+//    }
 }
