@@ -9,9 +9,9 @@
 </head>
 <body class="singlePageBook">
 
-<div layout:fragment="content" >
+<div layout:fragment="content" class="smallWrapper">
 
-    <section id="recipe-create-form" class="content-container fields" >
+    <section id="recipe-create-form" class="content-container" >
         <article>
             <form id="create-recipe-form"  th:object="${recipe}">
 
@@ -80,7 +80,7 @@
                                     th:utext="${ingredient}"/>
                         </select>
                     </div>
-                    <div class="col-3">
+                    <div class="col-2">
                         <input placeholder="Quantity" type="number" id="Quantity">
                     </div>
                     <div class="col-3 form-group">
@@ -91,7 +91,7 @@
                                     th:utext="${unit}"/>
                         </select>
                     </div>
-                    <div class="col-3">
+                    <div class="col-4">
                         <button type="button" id="add-ingredient-btn" class="btn btn-styling">Add Ingredient</button>
                     </div>
                 </div>
@@ -113,10 +113,10 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col-7">
                             <input placeholder="Enter Instruction" id="Instruction">
                     </div>
-                    <div class="col-3">
+                    <div class="col-5">
                         <button type="button" id="add-instruction-btn" class="btn btn-styling">Add Instruction</button>
                     </div>
                 </div>
