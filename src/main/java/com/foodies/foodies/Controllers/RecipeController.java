@@ -74,6 +74,27 @@ public class RecipeController {
         return isCreated? "redirect:/recipes/browse" :  "redirect:/recipes/create";
     }
 
+    @PostMapping(value="/recipes/save", params={"addRow"})
+    public String addRow(@Valid Recipes recipe, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "redirect:/recipes/create";
+        }
+
+        boolean isCreated = _recipeService.CreateRecipe(recipe);
+
+        return isCreated? "redirect:/recipes/browse" :  "redirect:/recipes/create";
+    }
+
+//    @RequestMapping(value="/seedstartermng", params={"save"})
+//    public String saveSeedstarter(final SeedStarter seedStarter, final BindingResult bindingResult, final ModelMap model) {
+//        if (bindingResult.hasErrors()) {
+//            return "seedstartermng";
+//        }
+//        this.seedStarterService.add(seedStarter);
+//        model.clear();
+//        return "redirect:/seedstartermng";
+//    }
+
     @GetMapping("/recipes/shopping")
     public String ShowShoppingList(Model model) {
         return "recipes/shopping-list";

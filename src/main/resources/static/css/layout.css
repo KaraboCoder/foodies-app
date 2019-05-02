@@ -54,6 +54,15 @@
     opacity: 0.9;
 }
 
+.ingredientsTable {
+    width: 100%;
+    position: relative;
+    left: 14%;
+    margin-bottom: 1rem;
+    background-color: aliceblue;
+    opacity: 0.9;
+}
+
 .createButton {
     position: relative;
     left: 47%;

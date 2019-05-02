@@ -36,6 +36,40 @@
                                 th:value="1"
                                 th:utext="${ingredient}"/>
                     </select>
+
+                <button type="button" class="btn btn-primary">Save recipe</button>
+                <table class="table table   -striped ingredientsTable">
+                    <thead>
+                    <tr>
+                        <th scope="col">Ingredient</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Units</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr >
+                        <td>
+                            <select  data-placeholder="Select Ingredient" id="Ingredients" name="Ingredients">
+                                <option value=""></option>
+                                <option th:each="ingredient : ${Ingredients}"
+                                        th:value="1"
+                                        th:utext="${ingredient}"/>
+                            </select>
+                        </td>
+                        <td>
+                            <input placeholder="Quantity" type="number" id="Quantity">
+                        </td>
+                        <td>
+                            <select  data-placeholder="Select Ingredient" name="Unit" id="Unit">
+                                <option value=""></option>
+                                <option th:each="ingredient : ${Ingredients}"
+                                        th:value="1"
+                                        th:utext="${ingredient}"/>
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
 <!--                </form>-->
                 <!--                <select>-->
 <!--                                    <option value=""> &#45;&#45; </option>-->
