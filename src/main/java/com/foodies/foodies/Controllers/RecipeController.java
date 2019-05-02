@@ -8,6 +8,7 @@ import com.foodies.foodies.Repositories.CommonIngredientRepository;
 import com.foodies.foodies.Repositories.IngredientDaoRepository;
 import com.foodies.foodies.Repositories.RecipeCategoryDaoRepository;
 import com.foodies.foodies.Repositories.UnitsRepository;
+import com.foodies.foodies.Services.contracts.IPreloadedFieldsService;
 import com.foodies.foodies.Services.contracts.IRecipeService;
 import com.foodies.foodies.ViewModels.RecipeViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,21 +33,16 @@ import java.util.List;
 @Controller
 public class RecipeController {
     private IRecipeService _recipeService;
-    private UnitsRepository _unitsRepo;
-    private RecipeCategoryDaoRepository _categoryRepo;
-    private CommonIngredientRepository _ingredientRepo;
+    private IPreloadedFieldsService _preloadedService;
+
 
     public  RecipeController(){}
 
     @Autowired
     public RecipeController(IRecipeService recipeService,
-                            CommonIngredientRepository ingredientRepo,
-                            UnitsRepository unitsRepo,
-                            RecipeCategoryDaoRepository categoryRepo) {
+                            IPreloadedFieldsService preloadedVals) {
         this._recipeService = recipeService;
-        this._unitsRepo = unitsRepo;
-        this._categoryRepo = categoryRepo;
-        this._ingredientRepo = ingredientRepo;
+        this._preloadedService = preloadedVals;
     }
 
 
@@ -64,30 +60,26 @@ public class RecipeController {
 
     @GetMapping("recipes/{recipeId}")
     public String GetRecipeDetails(@PathVariable("recipeId") Long ID, Model model){
-
+        var preloaded = _preloadedService.FetchAll();
         RecipeViewModel recipe = _recipeService.FindRecipeByID(ID);
 
         // TODO: Create /error page if not found
         model.addAttribute("recipe", recipe);
+        model.addAttribute(("Ingredients"), preloaded.getIngredients());
+        model.addAttribute(("Units"), preloaded.getUnits());
+        model.addAttribute(("Categories"), preloaded.getCategories());
+
         return "recipes/detail-view";
     }
 
     @GetMapping("/recipes/create")
     public String ShowRecipeCreateForm(Model model) {
-
-        ArrayList<CommonIngredient> Ingredients = new ArrayList<>();
-        ArrayList<Units> Units = new ArrayList<>();
-        ArrayList<RecipeCategoryDao> Categories = new ArrayList<>();
-
-        _ingredientRepo.findAll().forEach( item -> Ingredients.add(item));
-        _categoryRepo.findAll().forEach(item -> Categories.add(item));
-        _unitsRepo.findAll().forEach( item -> Units.add( item ));
+        var preloaded = _preloadedService.FetchAll();
 
         model.addAttribute("recipe", new RecipeViewModel());
-        model.addAttribute(("Ingredients"), Ingredients);
-        model.addAttribute(("Units"), Units);
-        model.addAttribute(("Categories"), Categories);
-
+        model.addAttribute(("Ingredients"), preloaded.getIngredients());
+        model.addAttribute(("Units"), preloaded.getUnits());
+        model.addAttribute(("Categories"), preloaded.getCategories());
 
         return "recipes/create";
     }
