@@ -11,8 +11,6 @@ public class HomeController {
 
     @GetMapping("")
     public  String HomePageView(Model model){
-        model.addAttribute("message", "Thymeleaf is f**n awsome!");
-        model.addAttribute("umessage", "<b>Thymeleaf is here!</b>");
         return "index";
     }
 }

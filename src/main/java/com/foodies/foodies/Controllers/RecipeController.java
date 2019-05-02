@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +54,12 @@ public class RecipeController {
     @GetMapping("/recipes/create")
     public String ShowRecipeCreateForm(Model model) {
         model.addAttribute("recipe", new Recipes());
+        ArrayList<String> Ingredients = new ArrayList<>();
+        Ingredients.add("Eggs");
+        Ingredients.add("Beef");
+        Ingredients.add("Chicken");
+        Ingredients.add("Carrots");
+        model.addAttribute(("Ingredients"), Ingredients);
         return "recipes/create";
     }
 
@@ -67,6 +74,11 @@ public class RecipeController {
         return isCreated? "redirect:/recipes/browse" :  "redirect:/recipes/create";
     }
 
+    @GetMapping("/recipes/shopping")
+    public String ShowShoppingList(Model model) {
+        return "recipes/shopping-list";
+    }
+
     @PostMapping("/recipes/update/{id}")
     public String UpdateRecipe(@Valid Recipes recipe, @PathVariable("id") Long ID){
         boolean isUpdated = _recipeService.UpdateRecipe(ID, recipe);
@@ -77,11 +89,23 @@ public class RecipeController {
     public String DeleteRecipe(@PathVariable("recipeId") Long ID, Model model){
         Recipes recipe = _recipeService.FindRecipeByID(ID).orElse(null);
         if(recipe == null) return "error";
-
         boolean result = _recipeService.DeleteRecipe(0L, ID);
         model.addAttribute("isDeleted", result);
         model.addAttribute("recipe", recipe);
 
         return "recipes/action-confirm";
+    }
+
+    @GetMapping("recipes/view/{recipeId}")
+    public String ViewRecipe(@PathVariable("recipeId") Long ID, Model model){
+        System.out.println("I got called");
+//        Recipes recipe = _recipeService.FindRecipeByID(ID).orElse(null);
+//        if(recipe == null) return "error";
+//
+//        boolean result = _recipeService.DeleteRecipe(0L, ID);
+//        model.addAttribute("isDeleted", result);
+//        model.addAttribute("recipe", recipe);
+
+        return "recipes/view-recipe";
     }
 }

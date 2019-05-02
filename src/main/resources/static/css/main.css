@@ -5,3 +5,13 @@
 tr:hover{
     background: aliceblue;
 }
+
+.bookImage {
+    width: 100%;
+    background-image: url('../img/bookimage.jpg');
+}
+
+.bg-light {
+    background-color: aliceblue;
+    opacity: 0.85;
+}

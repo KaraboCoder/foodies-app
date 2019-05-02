@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{fragments/_layout}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
+</head>
+<body class="viewRecipeBackground">
+
+<div layout:fragment="content" class="main-content-wrapper my-5" id="recipe-grid">
+    <label id="recipeTitle"><b>Recipe Title</b></label>
+
+                    <div id="ingredients">
+                        <label><i><b>Ingredients:</b></i></label>
+                        <br>
+                        <label>Here are the ingredients</label>
+                    </div>
+
+                    <div id="instructions">
+                        <label><i><b>Instructions</b></i></label>
+                        <br>
+                        <label>
+                            Here are the Instructions
+                        </label>
+                    </div>
+</div>
+
+</body>
+</html>
