@@ -22,6 +22,7 @@ public class Categories implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(unique = true)
     @NotBlank(message = "Category name is required.")
     private String categoryName;
 
