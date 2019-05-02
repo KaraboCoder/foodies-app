@@ -101,6 +101,7 @@ class LoadDatabase {
             loadUnits.add("L");
             loadUnits.add("g");
             loadUnits.add("kg");
+            loadUnits.add("Item Quantity");
 
             for (String addValue: loadUnits){
                 try {
