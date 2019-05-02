@@ -1,52 +1,63 @@
-console.log('before');
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Loaded create recipe script, init create recipe script.....");
 
     const getFormElementValueByID = (elementId) => {
-        return document.getElementById(elementId).nodeValue;
+        let elem = document.getElementById(elementId);
+        // Todo: If required field is null, do something
+        return elem.value ? elem.value : null;
     }
 
-    const getFormValue = () => {
+    const getSelectedValue = (selectionInputId) =>{
+        const e = document.getElementById(selectionInputId);
+        return e.options[e.selectedIndex].value;
+    }
 
+    const getInstrValuesFromTable = (tableQuerySelector) =>{
+        const results = [];
+        const dataRows = Array.from(document.querySelectorAll(tableQuerySelector));
+        dataRows.map( (row, index) => {
+            let cells = row.getElementsByTagName('td');
+            let instr = {
+                instruction_number: index,
+                instruction: cells[0].innerText 
+            };
+            results.push(instr);
+        });
+
+        return results;
+    }
+
+    const getIngrValuesFromTable = (tableQuerySelector) =>{
+        const results = [];
+        const dataRows = Array.from(document.querySelectorAll(tableQuerySelector));
+        dataRows.map( (row, index) => {
+            let cells = row.getElementsByTagName('td');
+            let ingr = {
+                name: cells[0],
+                unit_of_measurement: cells[1],
+                quantity: cells[2],
+                more_info: cells[3]
+            }
+            results.push(ingr);
+        });
+
+        return results;
     }
 
     const generateRequestbody = () => {
+        alert(`Check if form elem exists: ${JSON.stringify(document.getElementById("create-recipe-form"))}.`);
         const body = {
-            title: "Omlet",
-            instructions: [
-                {
-                    instruction_number: 1,
-                    instruction: "Dont use rainbow chicken"
-                }
-                ],
-            ingredients: [
-              {
-                name: "Eggs",
-                unit_of_measurement: "kg",
-                quantity: "6"
-              }
-            ],
-            category: {  "name": "General", "description": "Foodies"}
+            title: getFormElementValueByID('title'),
+            description: getFormElementValueByID('description'),
+            display_pic_url: getFormElementValueByID('display_pic_url'),
+            time_to_prepare: getFormElementValueByID('time_to_prepare'),
+            difficulty_level: getSelectedValue('difficulty_level'),
+            category: getSelectedValue('category'),
+            instructions: getInstrValuesFromTable("Instructions-table"),
+            ingredients: getIngrValuesFromTable("Ingredients-table")
           }
         return body;
     }
-
-    const postDataToApi = (formDataObject, apiEndpoint) => {
-        alert(`Recived form object: ${JSON.stringify(formDataObject)}`)
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("POST", apiEndpoint, false); // false for synchronous request
-        xmlHttp.send(JSON.stringify(formDataObject));
-        xmlHttp.onreadystatechange = function () {
-            if (this.status == 200) {
-                console.log(`Response received from API: ${JSON.stringify(xmlHttp.response)}`);
-                return xmlHttp.responseText;
-            }
-        };
-    }
-
 
     function postData(data = {}, url = ``, ) {
         // Default options are marked with *
@@ -78,9 +89,28 @@ document.addEventListener('DOMContentLoaded', () => {
             })
     }
 
-
     addPageEventListeners();
 
 });
+
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsById('create-recipe-form');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
 
 
