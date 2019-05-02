@@ -132,7 +132,10 @@ public class RecipeController {
     @GetMapping("recipes/view/{recipeId}")
     public String ViewRecipe(@PathVariable("recipeId") Long ID, Model model){
         System.out.println("I got called");
-        
+        RecipeViewModel recipe = _recipeService.FindRecipeByID(ID);
+
+        // TODO: Create /error page if not found
+        model.addAttribute("recipe", recipe);
         return "recipes/view-recipe";
     }
 }

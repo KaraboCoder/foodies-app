@@ -107,6 +107,8 @@
 #instructions {
     grid-area: C;
     font-size: 18px;
+    margin: auto;
+
     /*position: absolute;*/
     /*left: 64%;*/
     /*top: 31%;*/
@@ -120,8 +122,8 @@
 #recipe-grid {
     display: grid;
     grid-template-areas: 'A A A'
-                         'B . C'
-                         'B . C';
+                         'B C C'
+                         'B C C';
     margin-left: 27%;
     margin-right: 11%;
 }
@@ -146,6 +148,10 @@
     top: 19%;
 }
 
+#ingredientList {
+    font-weight: bold;
+
+}
 .labelTitle {
     font-size: 32px;
 }
