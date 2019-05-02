@@ -17,12 +17,12 @@ public class Instructions implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long instructionId;
 
     @NotBlank(message = "Cooking instruction is required.")
     private String CookingInstruction;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "recipeId", nullable = false)
     @NotNull(message = "Recipe ID is required.")
     private Recipes recipe;

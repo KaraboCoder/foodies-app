@@ -18,8 +18,9 @@ public class Categories implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long categoryId;
 
+    @Column(unique = true)
     @NotBlank(message = "Category name is required.")
     private String categoryName;
 

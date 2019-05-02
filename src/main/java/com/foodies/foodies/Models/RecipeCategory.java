@@ -16,14 +16,14 @@ public class RecipeCategory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long recipeCategoryId;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "recipeId", nullable = false)
     @NotNull(message = "Recipe ID is required.")
     private Recipes recipe;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "categoryId", nullable = false)
     @NotNull(message = "Category ID is required.")
     private Categories category;

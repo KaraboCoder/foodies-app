@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +57,18 @@ public class RecipeController {
     public String ShowRecipeCreateForm(Model model) {
 
         model.addAttribute("recipe", new RecipeViewModel());
+        ArrayList<String> Ingredients = new ArrayList<>();
+        ArrayList<String> Units = new ArrayList<>();
+        Ingredients.add("Eggs");
+        Ingredients.add("Beef");
+        Ingredients.add("Chicken");
+        Ingredients.add("Carrots");
 
+        Units.add("KG");
+        Units.add("Litre");
+        Units.add("Grams");
+        model.addAttribute(("Ingredients"), Ingredients);
+        model.addAttribute(("Units"), Units);
         return "recipes/create";
     }
 
@@ -71,6 +83,32 @@ public class RecipeController {
         return isCreated? "redirect:/recipes/browse" :  "redirect:/recipes/create";
     }
 
+    @PostMapping(value="/recipes/save", params={"addRow"})
+    public String addRow(@Valid Recipes recipe, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "redirect:/recipes/create";
+        }
+
+        boolean isCreated = _recipeService.CreateRecipe(recipe);
+
+        return isCreated? "redirect:/recipes/browse" :  "redirect:/recipes/create";
+    }
+
+//    @RequestMapping(value="/seedstartermng", params={"save"})
+//    public String saveSeedstarter(final SeedStarter seedStarter, final BindingResult bindingResult, final ModelMap model) {
+//        if (bindingResult.hasErrors()) {
+//            return "seedstartermng";
+//        }
+//        this.seedStarterService.add(seedStarter);
+//        model.clear();
+//        return "redirect:/seedstartermng";
+//    }
+
+    @GetMapping("/recipes/shopping")
+    public String ShowShoppingList(Model model) {
+        return "recipes/shopping-list";
+    }
+
     @PostMapping("/recipes/update/{id}")
     public String UpdateRecipe(@Valid RecipeViewModel recipe, @PathVariable("id") Long ID){
 
@@ -82,9 +120,18 @@ public class RecipeController {
     @GetMapping("recipes/delete/{recipeId}")
     public String DeleteRecipe(@PathVariable("recipeId") Long ID, Model model){
 
+        Recipes recipe = _recipeService.FindRecipeByID(ID).orElse(null);
+        if(recipe == null) return "error";
         boolean result = _recipeService.DeleteRecipe(0L, ID);
         model.addAttribute("isDeleted", result);
 
         return "recipes/action-confirm";
+    }
+
+    @GetMapping("recipes/view/{recipeId}")
+    public String ViewRecipe(@PathVariable("recipeId") Long ID, Model model){
+        System.out.println("I got called");
+        
+        return "recipes/view-recipe";
     }
 }
