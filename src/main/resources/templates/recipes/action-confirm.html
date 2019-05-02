@@ -1,49 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" layout:decorate="~{fragments/_layout}" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Foodies | Delete recipe</title>
-    <link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Foodies | Delete recipe</title>
+        <link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
+    </head>
+    <body class="deleteBackground">
 
-<div layout:fragment="content" class="main-content-wrapper my-5">
+    <div layout:fragment="content" class="container-delete">
 
-    <section class="content-container" id="action-confirm-container">
+        <section class="content-container" id="action-confirm-container">
 
-    <article class="action-result" id="äction-successful" th:if="${isDeleted}">
-        <header>
-            <h1 class="text-success">Successfully deleted recipe
-                <small class="text-danger" th:text="| > ${recipe.title}|"></small>
-            </h1>
-        </header>
+        <article class="action-result" id="äction-successful" th:if="${isDeleted}">
+            <header>
+                <h1 class="text-success">Successfully deleted recipe
+                    <small class="text-danger" th:text="| > ${recipe.title}|"></small>
+                </h1>
+            </header>
 
-        <footer>
-            <a th:href="@{~/recipes/browse}"><span class="badge badge-secondary">Go home</span></a>
-        </footer>
+            <footer>
+                <a th:href="@{~/recipes/browse}"><span class="badge badge-secondary">Go home</span></a>
+            </footer>
 
-    </article>
+        </article>
 
-    <article class="action-result" id="action-failed" th:if="${isDeleted}==false">
-        <header>
-            <p th:if="${isDeleted}==false" class="text-danger">An unexpected error has occurred. Would you like to try
-                again?
-            </p>
-        </header>
+        <article class="action-result" id="action-failed" th:if="${isDeleted}==false">
+            <header>
+                <p th:if="${isDeleted}==false" class="text-danger">An unexpected error has occurred. Would you like to try
+                    again?
+                </p>
+            </header>
 
-        <footer>
-            <a th:href="@{ ~/recipes/delete/{recipeId}(recipeId=${recipe.id}) }"><span class="badge badge-secondary">Try again</span></a>
-            <a th:href="@{~/recipes/browse}"><span class="badge badge-secondary"><span class="badge badge-secondary">Cancel</span></a>
-        </footer>
+            <footer>
+                <a th:href="@{ ~/recipes/delete/{recipeId}(recipeId=${recipe.id}) }"><span class="badge badge-secondary">Try again</span></a>
+                <a th:href="@{~/recipes/browse}"><span class="badge badge-secondary"><span class="badge badge-secondary">Cancel</span></a>
+            </footer>
 
-    </article>
+        </article>
 
-    </section>
+        </section>
 
 
-</div>
+    </div>
 
-</body>
-</html>
+    </body>
 </html>

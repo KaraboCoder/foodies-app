@@ -7,42 +7,46 @@
 </head>
 <body class="openBookClean">
 
-<div layout:fragment="content" class="main-content-wrapper my-5">
-    <table class="table table-striped tableStyling">
-        <thead>
+     <div layout:fragment="content" class="browse-wrapper">
+        <table class="table table-striped tableStyling">
+            <thead>
 
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Time to prepare</th>
-            <th scope="col">Difficulty level</th>
-            <th scope="col">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="recipe, status: ${recipeList}">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Time to prepare</th>
+                    <th scope="col">Difficulty level</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="recipe, status: ${recipeList}">
 
-            <th scope="row" th:text="${status.count}"></th>
-            <td th:text="${recipe.title}"></td>
-            <td th:text="|${recipe.time_to_prepare} mins|"></td>
-            <td th:text="${recipe.difficulty_level}"></td>
-            <td>
-                <a th:href="@{ ~/recipes/{recipeId}(recipeId=${recipe.id}) }"><span class="badge badge-secondary">Edit</span></a>
-                <a th:href="@{ ~/recipes/delete/{recipeId}(recipeId=${recipe.id}) }"><span class="badge badge-danger">Delete</span></a>
-                <a th:href="@{ ~/recipes/view/{recipeId} (recipeId=${recipe.id})}"> <span class="badge badge-danger">View Recipe</span></a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                    <th scope="row" th:text="${status.count}"></th>
+                    <td th:text="${recipe.title}"></td>
+                    <td th:text="|${recipe.time_to_prepare} mins|"></td>
+                    <td th:text="${recipe.difficulty_level}"></td>
+                    <td>
+                        <a th:href="@{ ~/recipes/{recipeId}(recipeId=${recipe.id}) }"><span class="badge badge-secondary">Edit</span></a>
+                        <a th:href="@{ ~/recipes/delete/{recipeId}(recipeId=${recipe.id}) }"><span class="badge badge-danger">Delete</span></a>
+                        <a th:href="@{ ~/recipes/view/{recipeId} (recipeId=${recipe.id})}"> <span class="badge badge-danger">View Recipe</span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-    <hr>
-    <button class="btn btn-primary createButton">
-        <a class="text-white" th:href="@{~/recipes/create}">Create new</a>
-    </button>
-    <button class="btn btn-primary createButton">
-        <a class="text-white" th:href="@{~/recipes/shopping}">Shopping List</a>
-    </button>
-</div>
+            <hr>
 
-</body>
+            <div class="flex-end">
+                <button class="btn btn-styling createButton">
+                    <a class="text-white" th:href="@{~/recipes/create}">Create new</a>
+                </button>
+
+                <button class="btn btn-styling createButton">
+                    <a class="text-white" th:href="@{~/recipes/shopping}">Shopping List</a>
+                </button>
+            </div>
+        </div>
+
+    </body>
 </html>

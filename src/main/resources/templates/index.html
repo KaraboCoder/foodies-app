@@ -9,8 +9,8 @@
 
 <div layout:fragment="content" class="main-content-wrapper my-5">
 
-    <div class="jumbotron text-center ">
-        <h1 class="display-4">Welcome to, <b>Foodies</b>!</h1>
+    <div class="jumbotron text-center opacity">
+        <h1 class="display-4 animated animatedFadeInUp fadeInUp">Welcome to, <b>Foodies</b>!</h1>
         <p class="lead">This is a simple online hub that lets you
             share your recipes with the world.</p>
         <hr class="my-4">
@@ -18,8 +18,9 @@
             browsing through some of the most popular recipes on the platform
         </p>
         <p class="lead">
-            <a class="btn btn-outline-primary btn-lg" th:href="@{~/recipes/create}" role="button">Create recipe</a>
-            <a class="btn btn-primary btn-lg" th:href="@{~/recipes/browse}" role="button">Show popular recipes</a>
+            <a class="btn btn-styling btn-lg" th:href="@{~/recipes/create}" role="button">Create recipe</a>
+            &nbsp;
+            <a class="btn btn-styling btn-lg" th:href="@{~/recipes/browse}" role="button">Show popular recipes</a>
         </p>
     </div>
 

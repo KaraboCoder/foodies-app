@@ -1,43 +1,44 @@
-.singlePageBook {
-    background-image: url('../img/createRecipeBook.jpg');
+.openBookClean, .singlePageBook, .homePageBackground, .shoppingListBackground, .viewRecipeBackground, .deleteBackground {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    overflow: auto;
+    background-attachment:fixed;
+    margin-top: 100px;
+}
+
+.openBookClean, .homePageBackground, .shoppingListBackground, .viewRecipeBackground, .deleteBackground {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - 100px);
+}
+
+.singlePageBook {
+    background-image: url('../img/createRecipeBook.jpg');
 }
 
 .openBookClean {
     background-image: url('../img/openbookclean.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
 }
 
 .homePageBackground {
     background-image: url('../img/notebook_pencil_recipe_seasoning_board.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
 }
 
 .viewRecipeBackground {
     background-image: url('../img/openBookClean2.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position-y: 18%;
 }
 .shoppingListBackground {
     background-image: url('../img/ShoppingList1.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.text-center {
-    opacity: 0.8;
 }
 
-.fields {
-    position: relative;
-    width: 28%;
-    left: 33%;
+.deleteBackground {
+    background-image: url('../img/delete.jpeg');
+}
+
+.opacity {
+    opacity: 0.94;
 }
 
 .bg-light {
@@ -46,12 +47,11 @@
 }
 
 .tableStyling {
-    width: 66%;
     position: relative;
-    left: 14%;
     margin-bottom: 1rem;
     background-color: aliceblue;
     opacity: 0.9;
+    box-shadow: 2px 6px 12px rgba(0,0,0,0.2);
 }
 
 .ingredientsTable {
@@ -65,8 +65,7 @@
     width: 100%;
 }
 .createButton {
-    position: relative;
-    left: 47%;
+    margin-left: 15px;
 }
 
 .editPageLayout {
@@ -95,6 +94,13 @@
     /*left: 55%;*/
 }
 
+.navbarFixed {
+    position: fixed;
+    width: 100vw;
+    top: 0px;
+    box-shadow: 5px 7px 12px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
 
 #ingredients {
     grid-area: B;
@@ -108,24 +114,16 @@
     grid-area: C;
     font-size: 18px;
     margin: auto;
-
-    /*position: absolute;*/
-    /*left: 64%;*/
-    /*top: 31%;*/
-    /*border: 2px solid black;*/
-    /*width: 22%;*/
-    /*height: 100%;*/
-    /*font-size: 18px;*/
-    /*text-align: center;*/
 }
 
 #recipe-grid {
     display: grid;
-    grid-template-areas: 'A A A'
-                         'B C C'
-                         'B C C';
-    margin-left: 27%;
-    margin-right: 11%;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-template-areas: 'A D' 'B C' 'B C';
+    margin-left: 26%;
+    padding: 20px;
+    width: 63%;
 }
 
 #recipeDetails {
@@ -141,11 +139,10 @@
 }
 
 .shoppingList {
-    position: absolute;
-    width: 100%;
-    height: 99%;
-    text-align: center;
-    top: 19%;
+    width: 32%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
 }
 
 #ingredientList {
@@ -176,6 +173,26 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+.btn-styling {
+    color: dimgray;
+    border: 1px solid dimgray;
+    text-transform: uppercase;
+    background: lightgray;
+    padding: 8px;
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn-styling:hover {
+    color: lightgray;
+    background: #434343;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+}
+
 
 .Instructions-cell-delete-button{
     display: inline-block;
@@ -190,4 +207,14 @@
 
 .user-dropdown{
     right: 360%;
+}
+
+.container-delete {
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #e9ecef;
+    border-radius: .3rem;
+    opacity: 0.94;
+    padding: 12px;
 }

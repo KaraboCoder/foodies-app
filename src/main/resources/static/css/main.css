@@ -1,5 +1,11 @@
-.main-content-wrapper{
-    min-height: 100vh;
+.browse-wrapper {
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #e9ecef;
+    border-radius: .3rem;
+    padding: 15px;
+    opacity: 0.94;
 }
 
 tr:hover{
@@ -14,4 +20,60 @@ tr:hover{
 .bg-light {
     background-color: aliceblue;
     opacity: 0.85;
+}
+
+/* Animation */
+
+@keyframes fadeInUp {
+    from {
+        transform: translate3d(0,40px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+        transform: translate3d(0,40px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+.animated {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-fill-mode: both
+}
+
+.animatedFadeInUp {
+    opacity: 0
+}
+
+.fadeInUp {
+    opacity: 0;
+    animation-name: fadeInUp;
+    -webkit-animation-name: fadeInUp;
+}
+
+.smallWrapper {
+    width: 45%;
+    background-color: #e9ecef;
+    border-radius: .3rem;
+    opacity: 0.94;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
 }
