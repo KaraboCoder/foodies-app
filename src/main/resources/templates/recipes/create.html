@@ -13,7 +13,7 @@
 
     <section id="recipe-create-form" class="content-container fields" >
         <article>
-            <form  th:object="${recipe}">
+            <form id="create-recipe-form"  th:object="${recipe}">
 
                 <div class="form-group">
                     <label for="title"><b>Title</b></label>
@@ -23,15 +23,35 @@
                            id="title"
                            placeholder="Name of your recipe" required/>
                 </div>
+
                 <div class="form-group">
-                    <label for="time-span"><b>Time to prepare</b></label>
-                    <input type="number" th:field="*{preparationTime}" class="form-control" id="time-span"
+                    <label for="title"><b>Description</b></label>
+                    <input type="text"
+                           th:field="*{description}"
+                           class="form-control"
+                           id="description"
+                           placeholder="Please provide a short description for your recipe" required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="difficulty_level">Difficulty level</label>
+                    <select id="difficulty_level" class="form-control">
+                        <option selected>Easy</option>
+                        <option>Medium</option>
+                        <option>Hard</option>
+                        <option>Expert</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="time_to_prepare"><b>Time to prepare</b></label>
+                    <input id="time_to_prepare" type="number" th:field="*{time_to_prepare}" class="form-control"
                         placeholder="Time to prepare in minutes"/>
                 </div>
 
                 <label id="Category-Label"><b>Meal Category</b></label>
-                <select  data-placeholder="Select Category" id="Category" name="Categories">
-                    <option value=""></option>
+                <select  data-placeholder="Select Category" id="category" name="Categories">
                     <option th:each="category : ${Categories}"
                             th:value="${category}"
                             th:utext="${category}"/>
@@ -53,8 +73,8 @@
                     </tbody>
                 </table>
                 <div class="row">
-                    <div class="col-3">
-                        <select  data-placeholder="Select Ingredient" id="Ingredient" name="Ingredients">
+                    <div class="col-3 form-group">
+                        <select  class="form-control" data-placeholder="Select Ingredient" id="Ingredient" name="Ingredients">
                             <option value=""></option>
                             <option th:each="ingredient : ${Ingredients}"
                                     th:value="${ingredient}"
@@ -64,8 +84,8 @@
                     <div class="col-3">
                         <input placeholder="Quantity" type="number" id="Quantity">
                     </div>
-                    <div class="col-3">
-                        <select  data-placeholder="Select Ingredient" name="Unit" id="Unit">
+                    <div class="col-3 form-group">
+                        <select class="form-control" data-placeholder="Select Ingredient" name="Unit" id="Unit">
                             <option value=""></option>
                             <option th:each="unit : ${Units}"
                                     th:value="${unit}"
