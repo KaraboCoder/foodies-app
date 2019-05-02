@@ -78,11 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const addPageEventListeners = () => {
         // 1. Create recipe form
-        document.getElementById("create-recipe-btn")
+        document.getElementById("edit-recipe-btn")
             .addEventListener('click', (e) => {
                 // alert(`form value is: ${ JSON.stringify( generateRequestbody(), null, 4 ) }`);
 
-                postData(generateRequestbody(), 'http://localhost:8080/api/create')
+                postData(generateRequestbody(), `http://localhost:8080/api/recipes/${e.target.id}`)
                     .then(data => location.reload() ) // JSON-string from `response.json()` call
                     .catch(error => console.error(error));
             });
@@ -91,7 +91,3 @@ document.addEventListener('DOMContentLoaded', () => {
     addPageEventListeners();
 
 });
-
-
-
-
