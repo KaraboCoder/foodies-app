@@ -12,29 +12,127 @@
 
 
     <article class="container editPageLayout">
-        <h1>Recipe details<small th:text="| - ${recipe.recipeName}|"></small></h1>
-        <form th:action="@{ /recipes/update/{id}(id=${recipe.id}) }" th:object="${recipe}" method="post">
+        <h1>Edit recipe <small th:text="| - ${recipe.title }|"></small></h1>
+        <form id="create-recipe-form"  th:object="${recipe}">
 
             <div class="form-group">
-                <label for="title">Title</label>
+                <label for="title"><b>Title</b></label>
                 <input type="text"
-                       th:field="*{recipeName}"
+                       th:field="*{title}"
                        class="form-control"
                        id="title"
-                       placeholder="Name of your recipe"/>
+                       placeholder="Name of your recipe" required/>
             </div>
+
             <div class="form-group">
-                <label for="time-span">Time to prepare</label>
-                <input type="number" th:field="*{preparationTime}" class="form-control" id="time-span"
+                <label for="title"><b>Description</b></label>
+                <input type="text"
+                       th:field="*{description}"
+                       class="form-control"
+                       id="description"
+                       placeholder="Please provide a short description for your recipe" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="difficulty_level">Difficulty level</label>
+                <select id="difficulty_level" class="form-control">
+                    <option selected>Easy</option>
+                    <option>Medium</option>
+                    <option>Hard</option>
+                    <option>Expert</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="time_to_prepare"><b>Time to prepare</b></label>
+                <input id="time_to_prepare" type="number" th:field="*{time_to_prepare}" class="form-control"
                        placeholder="Time to prepare in minutes"/>
             </div>
 
-            <aside class="row">
-            <a th:href="@{~/recipes/browse}" class="btn btn-primary w-40" id="backButton">Back</a>
-            <button type="submit" class="btn btn-primary w-40" id="saveChangesButton">Save changes</button>
-            </aside>
+            <label id="Category-Label"><b>Meal Category</b></label>
+            <select  data-placeholder="Select Category" id="category" name="Categories" disabled>
+                <option th:text="*{category.name}"></option>
+            </select>
+            <br>
+            <hr>
+            <table class="table table-striped ingredientsTable" id="Ingredients-table">
+                <thead>
+                <tr>
+                    <th scope="col">Ingredient</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Units</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="ingredient : ${recipe.ingredients}">
+                        <td th:text="${ingredient.name}"></td>
+                        <td th:text="${ingredient.quantity}"></td>
+                        <td th:text="${ingredient.unit_of_measurement}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row">
+                <div class="col-3 form-group">
+                    <select  class="form-control" data-placeholder="Select Ingredient" id="Ingredient" name="Ingredients">
+                        <option value=""></option>
+                        <!--TODO: GET lisr from entity service-->
+                        <option th:each="ingredient : ${Ingredients}"
+                                th:value="${ingredient}"
+                                th:utext="${ingredient}"/>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <input placeholder="Quantity" type="number" id="Quantity">
+                </div>
+                <div class="col-3 form-group">
+                    <select class="form-control" data-placeholder="Select Ingredient" name="Unit" id="Unit">
+                        <option value=""></option>
+                        <option th:each="unit : ${Units}"
+                                th:value="${unit}"
+                                th:utext="${unit}"/>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <button type="button" id="add-ingredient-btn" class="btn btn-primary">Add Ingredient</button>
+                </div>
+            </div>
+
+            <br>
+            <div class="table-wrapper">
+                <table class="table table-striped ingredientsTable" id="Instructions-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Instructions</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item : ${recipe.instructions}">
+                        <td th:text="${item.instruction_number}"></td>
+                        <td th:text="${item.instruction}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col-9">
+                    <input placeholder="Enter Instruction" id="Instruction">
+                </div>
+                <div class="col-3">
+                    <button type="button" id="add-instruction-btn" class="btn btn-primary">Add Instruction</button>
+                </div>
+            </div>
+
+
+            <a type="button" th:href="@{~/recipes/browse}" th:id="${recipe.id}" class="btn btn-primary edit-recipe-btn">Save recipe</a>
         </form>
     </article>
+
+    <script src="/js/edit-recipe.js"></script>
 </div>
 
 </body>

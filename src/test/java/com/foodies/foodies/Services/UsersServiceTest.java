@@ -9,10 +9,7 @@ import org.junit.runner.RunWith;
 
 import com.foodies.foodies.Models.Users;
 import javax.validation.ConstraintViolation;
-import com.foodies.foodies.Repositories.UsersRepository;
-import com.foodies.foodies.Services.UsersService;
 import javax.validation.Validator;
-import com.foodies.foodies.Repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
@@ -21,9 +18,6 @@ import java.util.Set;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UsersServiceTest {
-
-    @Autowired
-    UsersRepository usersRepository;
 
     @Test
     public void whenCreateUserHasViolations_thenUsersRepositorySaveMethodNotCalled() {

@@ -12,9 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-@Data
-@Entity
-@Table(name = "ingredients")
+
 public class Ingredients implements Serializable {
 
     @Id
@@ -29,7 +27,7 @@ public class Ingredients implements Serializable {
     @JoinColumn(name = "categoryId")
     private Categories category;
 
-    protected Ingredients() {}
+    public Ingredients() {}
 
     Ingredients(String ingredientName, Categories category) {
         this.ingredientName = ingredientName;
