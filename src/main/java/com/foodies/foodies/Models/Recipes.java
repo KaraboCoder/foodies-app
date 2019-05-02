@@ -27,12 +27,15 @@ public class Recipes implements Serializable {
     @NotNull(message = "Preparation time (in minutes) is required.")
     private int preparationTime; // minutes
 
+    private boolean selected;
+
     //#region constructors
     public Recipes() {}
 
     Recipes(String recipeName, int preparationTime) {
         this.recipeName = recipeName;
         this.preparationTime = preparationTime;
+        this.selected = false;
     }
     //#endregion
 

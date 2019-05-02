@@ -17,8 +17,12 @@ import com.foodies.foodies.Repositories.*;
 class LoadDatabase {
 
     @Bean
-    CommandLineRunner initCategoriesDB(CategoriesRepository _categoriesRepo) {
+    CommandLineRunner initDatabase(CategoriesRepository _categoriesRepo, IngredientsRepository _ingredientsRepo) {
         return args -> {
+            _ingredientsRepo.deleteAll();
+            _categoriesRepo.deleteAll();
+
+            out.println("Preloading Categories");
             out.println("Preloading " + _categoriesRepo.save(new Categories("Breakfast")));
             out.println("Preloading " + _categoriesRepo.save(new Categories("Dessert")));
             out.println("Preloading " + _categoriesRepo.save(new Categories("Main Dishes: Beef")));
@@ -36,20 +40,32 @@ class LoadDatabase {
             out.println("Preloading " + _categoriesRepo.save(new Categories("Miscellaneous")));
             out.println("Preloading " + _categoriesRepo.save(new Categories("Lunch")));
             out.println("Preloading " + _categoriesRepo.save(new Categories("Canning / Freezing")));
-        };
-    }
 
-    @Bean
-    CommandLineRunner initIngredientsDB(CategoriesRepository _categoriesRepo) {
-        return args -> {
-            out.println("Preloading " + _categoriesRepo.save(new Categories("Breakfast")));
-        };
-    }
+            out.println("Preloading Ingredients");
+            Categories meatCategory = _categoriesRepo.save(new Categories("Ingredient: Meat"));
+            Categories produceCategory = _categoriesRepo.save(new Categories("Ingredient: Produce"));
+            Categories bakingCategory = _categoriesRepo.save(new Categories("Ingredient: Dry / Baking"));
+            Categories dairyCategory = _categoriesRepo.save(new Categories("Ingredient: Dairy"));
 
-    @Bean
-    CommandLineRunner initDB(CategoriesRepository _categoriesRepo) {
-        return args -> {
-            out.println("Preloading " + _categoriesRepo.save(new Categories("Breakfast")));
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Beef", meatCategory)));
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Poultry", meatCategory)));
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Pork", meatCategory)));
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Seafood", meatCategory)));
+
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Apple", produceCategory)));
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Banana", produceCategory)));
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Potato", produceCategory)));
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Spinach", produceCategory)));
+
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Flour", bakingCategory)));
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Icing Sugar", bakingCategory)));
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Sugar", bakingCategory)));
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Pasta", bakingCategory)));
+
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Milk", dairyCategory)));
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Butter", dairyCategory)));
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Eggs", dairyCategory)));
+            out.println("Preloading " + _ingredientsRepo.save(new Ingredients("Yogurt", dairyCategory)));
         };
     }
 }

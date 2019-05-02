@@ -21,17 +21,19 @@ public class Ingredients implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(unique = true)
     @NotBlank(message = "Ingredient name is required.")
     private String ingredientName;
 
-    @ManyToOne(optional = true)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoryId")
     private Categories category;
 
     protected Ingredients() {}
 
-    Ingredients(String ingredientName) {
+    Ingredients(String ingredientName, Categories category) {
         this.ingredientName = ingredientName;
+        this.category = category;
     }
 
 }
