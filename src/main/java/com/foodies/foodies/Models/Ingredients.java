@@ -19,7 +19,7 @@ public class Ingredients implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long ingredientId;
 
     @Column(unique = true)
     @NotBlank(message = "Ingredient name is required.")
