@@ -19,7 +19,7 @@ public class Units implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long unitId;
 
     @Column(unique = true)
     @NotBlank(message = "Measuring unit is required.")

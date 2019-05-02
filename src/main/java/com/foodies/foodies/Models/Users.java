@@ -21,7 +21,7 @@ public class Users implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long userId;
 
     @NotBlank(message = "First name is required.")
     private String firstName;

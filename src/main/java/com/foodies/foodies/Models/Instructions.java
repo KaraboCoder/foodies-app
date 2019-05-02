@@ -19,7 +19,7 @@ public class Instructions implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long instructionId;
 
     @NotBlank(message = "Cooking instruction is required.")
     private String CookingInstruction;

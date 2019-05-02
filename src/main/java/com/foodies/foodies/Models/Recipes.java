@@ -14,12 +14,12 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "recipe")
+@Table(name = "recipes")
 public class Recipes implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long recipeId;
 
     @NotBlank(message = "Recipe name is required.")
     private String recipeName;
