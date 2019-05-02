@@ -7,7 +7,7 @@
 </head>
 <body class="openBookClean">
 
-     <div layout:fragment="content" class="main-content-wrapper my-5">
+     <div layout:fragment="content" class="browse-wrapper">
         <table class="table table-striped tableStyling">
             <thead>
 
@@ -36,12 +36,16 @@
         </table>
 
             <hr>
-            <button class="btn btn-styling createButton">
-                <a class="text-white" th:href="@{~/recipes/create}">Create new</a>
-            </button>
-            <button class="btn btn-styling createButton">
-                <a class="text-white" th:href="@{~/recipes/shopping}">Shopping List</a>
-            </button>
+
+            <div class="flex-end">
+                <button class="btn btn-styling createButton">
+                    <a class="text-white" th:href="@{~/recipes/create}">Create new</a>
+                </button>
+
+                <button class="btn btn-styling createButton">
+                    <a class="text-white" th:href="@{~/recipes/shopping}">Shopping List</a>
+                </button>
+            </div>
         </div>
 
     </body>

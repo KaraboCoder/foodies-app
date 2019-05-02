@@ -13,6 +13,10 @@
 
 .openBookClean {
     background-image: url('../img/openbookclean.jpg');
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 100px);
+    justify-content: space-between;
 }
 
 .homePageBackground {
@@ -25,6 +29,10 @@
 
 .viewRecipeBackground {
     background-image: url('../img/openBookClean2.jpg');
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - 100px);
 }
 .shoppingListBackground {
     background-image: url('../img/ShoppingList1.jpeg');
@@ -40,12 +48,11 @@
 }
 
 .tableStyling {
-    width: 66%;
     position: relative;
-    left: 14%;
     margin-bottom: 1rem;
     background-color: aliceblue;
     opacity: 0.9;
+    box-shadow: 2px 6px 12px rgba(0,0,0,0.2);
 }
 
 .ingredientsTable {
@@ -59,8 +66,7 @@
     width: 100%;
 }
 .createButton {
-    position: relative;
-    left: 47%;
+    margin-left: 15px;
 }
 
 .editPageLayout {
@@ -109,24 +115,16 @@
     grid-area: C;
     font-size: 18px;
     margin: auto;
-
-    /*position: absolute;*/
-    /*left: 64%;*/
-    /*top: 31%;*/
-    /*border: 2px solid black;*/
-    /*width: 22%;*/
-    /*height: 100%;*/
-    /*font-size: 18px;*/
-    /*text-align: center;*/
 }
 
 #recipe-grid {
     display: grid;
-    grid-template-areas: 'A A A'
-                         'B C C'
-                         'B C C';
-    margin-left: 27%;
-    margin-right: 11%;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-template-areas: 'A D' 'B C' 'B C';
+    margin-left: 26%;
+    padding: 20px;
+    width: 63%;
 }
 
 #recipeDetails {
