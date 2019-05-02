@@ -8,20 +8,37 @@
 <body class="viewRecipeBackground">
 
 <div layout:fragment="content" class="main-content-wrapper my-5" id="recipe-grid">
-    <label id="recipeTitle"><b>Recipe Title</b></label>
+    <label id="recipeTitle" th:text="${recipe.title}"></label>
 
                     <div id="ingredients">
                         <label><i><b>Ingredients:</b></i></label>
                         <br>
+                        <div th:each="ingredient, status: ${recipe.ingredients}">
+                        <ul id="ingredientList">
+                            <li>
+                            <label scope="row" th:text="|${status.count} - |"></label>
+                            <label th:text="${ingredient.getName()}"></label>
+                            <label th:text="|${ingredient.getQuantity()}|"></label>
+                            <label th:text="${ingredient.getUnit_of_measurement()}"></label>
+                            </li>
+                        </ul>
+
+                        </div>
                         <label>Here are the ingredients</label>
                     </div>
 
                     <div id="instructions">
                         <label><i><b>Instructions</b></i></label>
                         <br>
-                        <label>
-                            Here are the Instructions
-                        </label>
+                        <div th:each="instruction, status: ${recipe.getInstructions()}">
+                            <ul id="ingredientList">
+                            <li>
+                                <label scope="row" th:text="|${status.count}. |"></label>
+                                <label th:text="${instruction.instruction}"></label>
+                            </li>
+                            </ul>
+
+                        </div>
                     </div>
 </div>
 
