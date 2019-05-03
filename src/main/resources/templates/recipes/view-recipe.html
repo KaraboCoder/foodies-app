@@ -7,8 +7,20 @@
 </head>
 <body class="viewRecipeBackground">
 
-<div layout:fragment="content" class="main-content-wrapper my-5" id="recipe-grid">
-    <label id="recipeTitle" th:text="${recipe.title}"></label>
+<div layout:fragment="content"  >
+    <div id="recipe-grid">
+            <label id="recipeTitle" th:text="${recipe.title}"></label>
+
+                    <div id="Description">
+                        <ul>
+                            <li th:text="|Description: ${recipe.description}|"></li>
+
+                            <li th:text="|Category: ${recipe.category.getName()}|"></li>
+
+                            <li th:text="|Difficulty: ${recipe.difficulty_level}|"></li>
+                        </ul>
+                    </div>
+
 
                     <div id="ingredients">
                         <label><i><b>Ingredients:</b></i></label>
@@ -24,10 +36,12 @@
                         </ul>
 
                         </div>
+
                     </div>
+    </div>
 
                     <div id="instructions">
-                        <label><i><b>Instructions</b></i></label>
+                        <label><i><b>Instructions:</b></i></label>
                         <br>
                         <div th:each="instruction, status: ${recipe.getInstructions()}">
                             <ul id="instructionstList">

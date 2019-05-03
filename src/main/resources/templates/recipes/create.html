@@ -51,11 +51,13 @@
                 </div>
 
                 <label id="Category-Label"><b>Meal Category</b></label>
-                <select  data-placeholder="Select Category" id="category" name="Categories">
-                    <option th:each="category : ${Categories}"
+                <div class="form-group">
+                    <select  data-placeholder="Select Category" id="category" name="Categories" class="form-control">
+                        <option th:each="category : ${Categories}"
                             th:value="${category.name}"
                             th:utext="${category.name}"/>
-                </select>
+                    </select>
+                </div>
                 <br>
                 <hr>
                 <table class="table table-striped ingredientsTable" id="Ingredients-table">
@@ -79,8 +81,8 @@
                                     th:utext="${ingredient.ingredientName}"/>
                         </select>
                     </div>
-                    <div class="col-2">
-                        <input placeholder="Quantity" type="number" id="Quantity">
+                    <div class="col-2 form-group" >
+                        <input placeholder="Quantity" type="number" id="Quantity" class="form-control">
                     </div>
                     <div class="col-3 form-group">
                         <select class="form-control" data-placeholder="Select Ingredient" name="Unit" id="Unit">

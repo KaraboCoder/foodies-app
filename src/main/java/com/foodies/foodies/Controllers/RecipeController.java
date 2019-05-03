@@ -1,6 +1,6 @@
 package com.foodies.foodies.Controllers;
 
-import com.foodies.foodies.Entities.IngredientDao;
+import com.foodies.foodies.Classes.ShoppingListItem;
 import com.foodies.foodies.Entities.RecipeCategoryDao;
 import com.foodies.foodies.Models.CommonIngredient;
 import com.foodies.foodies.Models.Units;
@@ -11,6 +11,7 @@ import com.foodies.foodies.Repositories.UnitsRepository;
 import com.foodies.foodies.Services.contracts.IPreloadedFieldsService;
 import com.foodies.foodies.Services.contracts.IRecipeService;
 import com.foodies.foodies.ViewModels.RecipeViewModel;
+import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -109,7 +110,43 @@ public class RecipeController {
 
     @GetMapping("/recipes/shopping")
     public String ShowShoppingList(Model model) {
+        List<RecipeViewModel> results = new ArrayList<>();
+
+        _recipeService.FetchAllRecipes().forEach(item -> results.add((item)));
+
+
+        ArrayList<ShoppingListItem> shoppingList = new ArrayList<>();
+
+        results.forEach(recipeViewModel -> {
+            recipeViewModel.ingredients.forEach(ingredientDao -> {
+                String currentIngredientName = ingredientDao.getName();
+                float quantity = ingredientDao.getQuantity();
+                String unit_measurement = ingredientDao.getUnit_of_measurement();
+                int nameResult = alreadyInList(shoppingList, currentIngredientName);
+                if (nameResult == -1) {
+                    ShoppingListItem item = new ShoppingListItem(currentIngredientName,quantity, unit_measurement);
+                    shoppingList.add(item);
+                } else {
+                    shoppingList.get(nameResult).quantity =  shoppingList.get(nameResult).quantity + quantity;
+                }
+            });
+        });
+        model.addAttribute("shoppingListItems", shoppingList);
         return "recipes/shopping-list";
+    }
+
+    public int alreadyInList(ArrayList<ShoppingListItem> shoppingListNames, String ingredientName) {
+        int length = shoppingListNames.size();
+        int alreadyExists = -1;
+        for (int i = 0; i < length; i++) {
+            String itemName = shoppingListNames.get(i).ingredientName;
+            if( itemName.equals(ingredientName)) {
+                System.out.println("Already Exists");
+                alreadyExists = i;
+                break;
+            }
+        }
+        return alreadyExists;
     }
 
     @PostMapping("/recipes/update/{id}")
@@ -142,3 +179,5 @@ public class RecipeController {
         return "recipes/view-recipe";
     }
 }
+
+
