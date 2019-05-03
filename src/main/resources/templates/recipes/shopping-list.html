@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" layout:decorate="~{fragments/_layout}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>ShoppingList</title>
-    <link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
-</head>
-<body class="shoppingListBackground">
+    <head>
+        <meta charset="UTF-8">
+        <title>Foodies | Your shopping list</title>
+        <link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
+    </head>
+    <body class="shoppingListBackground">
 
-<div layout:fragment="content" class="main-content-wrapper my-5 shoppingList" >
-    <label class="labelTitle"><b>Shopping List</b></label>
+        <div layout:fragment="content" class="shoppingList" >
+            <label class="labelTitle"><b>Shopping List</b></label>
+            <br>
 
-    <div id="items">
-        <label><i><b>Ingredients:</b></i></label>
-        <br>
+            <div id="items">
+                <label><i><b>Ingredients:</b></i></label>
+            <br>
+            <br>
+
         <ul  th:each="shoppingItem, status: ${shoppingListItems}">
-            <label th:text="|${shoppingItem.ingredientName} ${shoppingItem.quantity} ${shoppingItem.unit}|"></label>
+            <li th:text="|${shoppingItem.ingredientName} ${shoppingItem.quantity} ${shoppingItem.unit}|"></li>
         </ul>
-    </div>
-</div>
+            </div>
+        </div>
 
-</body>
+    </body>
 </html>

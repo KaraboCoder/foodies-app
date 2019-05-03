@@ -26,7 +26,7 @@ public class RecipeIngredient implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "ingredientId", nullable = false)
     @NotNull(message = "Ingredient ID is required.")
-    private Ingredients ingredient;
+    private CommonIngredient ingredient;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "unitId", nullable = false)

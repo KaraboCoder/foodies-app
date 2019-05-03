@@ -9,9 +9,9 @@
 </head>
 <body class="singlePageBook">
 
-<div layout:fragment="content" >
+<div layout:fragment="content" class="smallWrapper">
 
-    <section id="recipe-create-form" class="content-container fields" >
+    <section id="recipe-create-form" class="content-container" >
         <article>
             <form id="create-recipe-form"  th:object="${recipe}">
 
@@ -54,8 +54,8 @@
                 <div class="form-group">
                     <select  data-placeholder="Select Category" id="category" name="Categories" class="form-control">
                         <option th:each="category : ${Categories}"
-                                th:value="${category}"
-                                th:utext="${category}"/>
+                            th:value="${category.name}"
+                            th:utext="${category.name}"/>
                     </select>
                 </div>
                 <br>
@@ -76,25 +76,23 @@
                 <div class="row">
                     <div class="col-3 form-group">
                         <select  class="form-control" data-placeholder="Select Ingredient" id="Ingredient" name="Ingredients">
-                            <option value=""></option>
                             <option th:each="ingredient : ${Ingredients}"
-                                    th:value="${ingredient}"
-                                    th:utext="${ingredient}"/>
+                                    th:value="${ingredient.ingredientName}"
+                                    th:utext="${ingredient.ingredientName}"/>
                         </select>
                     </div>
-                    <div class="col-3 form-group" >
+                    <div class="col-2 form-group" >
                         <input placeholder="Quantity" type="number" id="Quantity" class="form-control">
                     </div>
                     <div class="col-3 form-group">
                         <select class="form-control" data-placeholder="Select Ingredient" name="Unit" id="Unit">
-                            <option value=""></option>
-                            <option th:each="unit : ${Units}"
-                                    th:value="${unit}"
-                                    th:utext="${unit}"/>
+                            <option th:each="unitItem : ${Units}"
+                                    th:value="${unitItem.unit}"
+                                    th:utext="${unitItem.unit}"/>
                         </select>
                     </div>
-                    <div class="col-3">
-                        <button type="button" id="add-ingredient-btn" class="btn btn-primary">Add Ingredient</button>
+                    <div class="col-4">
+                        <button type="button" id="add-ingredient-btn" class="btn btn-styling">Add Ingredient</button>
                     </div>
                 </div>
 
@@ -115,16 +113,16 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col-8">
                             <input placeholder="Enter Instruction" id="Instruction">
                     </div>
-                    <div class="col-3">
-                        <button type="button" id="add-instruction-btn" class="btn btn-primary">Add Instruction</button>
+                    <div class="col-4">
+                        <button type="button" id="add-instruction-btn" class="btn btn-styling">Add Instruction</button>
                     </div>
                 </div>
 
 
-                <a type="button" th:href="@{~/recipes/browse}" id="create-recipe-btn" class="btn btn-primary">Save recipe</a>
+                <a type="button" th:href="@{~/recipes/browse}" id="create-recipe-btn" class="btn btn-styling">Save recipe</a>
             </form>
         </article>
     </section>

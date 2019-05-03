@@ -1,6 +1,14 @@
 package com.foodies.foodies.Controllers;
 
 import com.foodies.foodies.Classes.ShoppingListItem;
+import com.foodies.foodies.Entities.RecipeCategoryDao;
+import com.foodies.foodies.Models.CommonIngredient;
+import com.foodies.foodies.Models.Units;
+import com.foodies.foodies.Repositories.CommonIngredientRepository;
+import com.foodies.foodies.Repositories.IngredientDaoRepository;
+import com.foodies.foodies.Repositories.RecipeCategoryDaoRepository;
+import com.foodies.foodies.Repositories.UnitsRepository;
+import com.foodies.foodies.Services.contracts.IPreloadedFieldsService;
 import com.foodies.foodies.Services.contracts.IRecipeService;
 import com.foodies.foodies.ViewModels.RecipeViewModel;
 import lombok.ToString;
@@ -26,10 +34,16 @@ import java.util.List;
 @Controller
 public class RecipeController {
     private IRecipeService _recipeService;
+    private IPreloadedFieldsService _preloadedService;
+
+
+    public  RecipeController(){}
 
     @Autowired
-    public RecipeController(IRecipeService _recipeService) {
-        this._recipeService = _recipeService;
+    public RecipeController(IRecipeService recipeService,
+                            IPreloadedFieldsService preloadedVals) {
+        this._recipeService = recipeService;
+        this._preloadedService = preloadedVals;
     }
 
 
@@ -47,39 +61,26 @@ public class RecipeController {
 
     @GetMapping("recipes/{recipeId}")
     public String GetRecipeDetails(@PathVariable("recipeId") Long ID, Model model){
-
+        var preloaded = _preloadedService.FetchAll();
         RecipeViewModel recipe = _recipeService.FindRecipeByID(ID);
 
         // TODO: Create /error page if not found
         model.addAttribute("recipe", recipe);
+        model.addAttribute(("Ingredients"), preloaded.getIngredients());
+        model.addAttribute(("Units"), preloaded.getUnits());
+        model.addAttribute(("Categories"), preloaded.getCategories());
+
         return "recipes/detail-view";
     }
 
     @GetMapping("/recipes/create")
     public String ShowRecipeCreateForm(Model model) {
+        var preloaded = _preloadedService.FetchAll();
 
         model.addAttribute("recipe", new RecipeViewModel());
-        ArrayList<String> Ingredients = new ArrayList<>();
-        ArrayList<String> Units = new ArrayList<>();
-        ArrayList<String> Categories = new ArrayList<>();
-
-        Ingredients.add("Eggs");
-        Ingredients.add("Beef");
-        Ingredients.add("Chicken");
-        Ingredients.add("Carrots");
-
-        Units.add("KG");
-        Units.add("Litre");
-        Units.add("Grams");
-
-        Categories.add("Dessert");
-        Categories.add("Dinner");
-        Categories.add("Breakfast");
-
-        model.addAttribute(("Ingredients"), Ingredients);
-        model.addAttribute(("Units"), Units);
-        model.addAttribute(("Categories"), Categories);
-
+        model.addAttribute(("Ingredients"), preloaded.getIngredients());
+        model.addAttribute(("Units"), preloaded.getUnits());
+        model.addAttribute(("Categories"), preloaded.getCategories());
 
         return "recipes/create";
     }
